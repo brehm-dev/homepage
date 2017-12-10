@@ -2,16 +2,50 @@ html
     head
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no")
+        link(rel="shortcut icon" type="image/x-icon" href="images/1512913768.ico")
         title Andreas Brehm
-        link(rel="stylesheet" href="bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="bootstrap/css/bootstrap.css")
+        style.
+            section.page-header {
+                background-image: 'images/plane_mountains-HD.jpg'
+            }
     body
         header
-            .jumbotron.jumbotron-fluid
-                .container
-                    h1.display-3 Halllchen
-        section
-            .container
-                h1 bisherige Arbeit
+            nav.navbar.navbar-default.navbar-fixed-top
+                .container-fluid
+                    .navbar-header
+                        a.navbar-brand(href="/")
+                            img(alt="Andreas Brehm" src="images/my_logo_trans.png" style="max-width: 29px; max-height: 29px")
+                        button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+                            span.sr-only Toggle Navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                    .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                        ul.nav.navbar-nav
+                            li.active
+                            li
+                                a(href="#") Link
+                            li.dropdown
+                                a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Dropdown
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href="#") Action
+                                    li
+                                        a(href="#") Another Action
+                                    li
+                                        a(href="#") Else
+                                    li.divider(role="separator")
+                                    li
+                                        a(href="#") Link 4
+                                    li
+                                        a(href="#") Link 5
+
+        section.page-header
+                img.img-responsive(src="images/plane_mountains-HD.jpg" style="max-height: 100%;")
+                h1(style="position: absolute;") Andreas Brehm
+
         section
             .container
                 h1 meine Interessen
@@ -22,5 +56,5 @@ html
             .container
                 h1 Footer
 
-        script(src="jquery/dist/jquery.js")
-        script(src="bootstrap/dist/js/bootstrap.js")
+        script(src="jquery/jquery.js")
+        script(src="bootstrap/js/bootstrap.js")
