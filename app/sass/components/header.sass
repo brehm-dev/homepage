@@ -1,0 +1,52 @@
+header
+    .ab-navbar
+        position: fixed
+        top: 0
+        width: 100%
+        display: flex
+        background: $bgColor
+        .ab-navbar-brand
+            .ab-brand
+                max-width: 29px
+                max-height: 29px
+        .ab-navbar-group
+            display: flex
+            width: 100%
+            .ab-navbar-group-item
+                display: flex
+                flex: 1
+                justify-content: center
+                align-items: center
+                .ab-navbar-link
+            .ab-navbar-group-item:hover
+                cursor: pointer
+        .ab-navbar-menu
+            display: flex
+            .ab-navbar-menu-border
+                display: flex
+                .ab-navbar-menu-button
+                    display: flex
+                    flex-direction: column
+                    align-items: stretch
+                    justify-content: space-around
+                    width: 20px
+                    margin: 4px
+                    border: 1px solid $fontColor
+                    padding: 2px
+                    border-radius: 4px
+                    .ab-navbar-menu-item
+                        width: 100%
+                        height: 3px
+                        background: $fontColor
+                        border-radius: 2px
+                        transition: all .3s ease-out
+        .ab-navbar-menu:hover
+
+            .ab-navbar-menu-button
+                .ab-navbar-menu-item:nth-child(1)
+                    transform: rotate(45deg) translate(3px, 2px)
+                .ab-navbar-menu-item:nth-child(2)
+                    display: none
+                .ab-navbar-menu-item:nth-child(3)
+                    transform: rotate(-45deg) translate(3px, -2px)
+
