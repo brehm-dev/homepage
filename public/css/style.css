@@ -4,6 +4,11 @@
   text-decoration: none;
   list-style-type: none;
   font-family: Helvetica;
+  letter-spacing: 0.03em;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 img {
@@ -11,61 +16,110 @@ img {
 }
 
 header .ab-navbar {
+  display: flex;
   position: fixed;
   top: 0;
   width: 100%;
-  display: flex;
   background: #F7F7F7;
+  justify-content: space-between;
+  font-size: 1.6em;
+}
+header .ab-navbar .ab-navbar-brand {
+  margin: 5px;
 }
 header .ab-navbar .ab-navbar-brand .ab-brand {
-  max-width: 29px;
-  max-height: 29px;
+  max-width: 40px;
 }
-header .ab-navbar .ab-navbar-group {
-  display: flex;
-  width: 100%;
-}
-header .ab-navbar .ab-navbar-group .ab-navbar-group-item {
+header .ab-navbar .ab-navbar-list {
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
 }
-header .ab-navbar .ab-navbar-group .ab-navbar-group-item:hover {
+header .ab-navbar .ab-navbar-list .ab-navbar-dead-item {
+  display: none;
+  opacity: 0;
+}
+header .ab-navbar .ab-navbar-list .ab-navbar-group {
+  display: flex;
+  width: 100%;
+}
+header .ab-navbar .ab-navbar-list .ab-navbar-group .ab-navbar-group-item {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+header .ab-navbar .ab-navbar-list .ab-navbar-group .ab-navbar-group-item:hover {
   cursor: pointer;
+  background: #333333;
+  color: #F7F7F7;
+  border-radius: 2px;
 }
 header .ab-navbar .ab-navbar-menu {
-  display: flex;
-}
-header .ab-navbar .ab-navbar-menu .ab-navbar-menu-border {
-  display: flex;
-}
-header .ab-navbar .ab-navbar-menu .ab-navbar-menu-border .ab-navbar-menu-button {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-around;
-  width: 20px;
-  margin: 4px;
-  border: 1px solid #333333;
-  padding: 2px;
-  border-radius: 4px;
-}
-header .ab-navbar .ab-navbar-menu .ab-navbar-menu-border .ab-navbar-menu-button .ab-navbar-menu-item {
-  width: 100%;
-  height: 3px;
-  background: #333333;
-  border-radius: 2px;
-  transition: all 0.3s ease-out;
-}
-header .ab-navbar .ab-navbar-menu:hover .ab-navbar-menu-button .ab-navbar-menu-item:nth-child(1) {
-  transform: rotate(45deg) translate(3px, 2px);
-}
-header .ab-navbar .ab-navbar-menu:hover .ab-navbar-menu-button .ab-navbar-menu-item:nth-child(2) {
   display: none;
 }
-header .ab-navbar .ab-navbar-menu:hover .ab-navbar-menu-button .ab-navbar-menu-item:nth-child(3) {
-  transform: rotate(-45deg) translate(3px, -2px);
+@media only screen and (max-width: 615px) {
+  header .ab-navbar .ab-navbar-list {
+    flex-direction: column;
+    font-size: 2.2em;
+    font-weight: lighter;
+  }
+  header .ab-navbar .ab-navbar-list .ab-navbar-dead-item {
+    display: flex;
+    flex: 1;
+    width: 100%;
+  }
+  header .ab-navbar .ab-navbar-list .ab-navbar-group {
+    display: none;
+  }
+  header .ab-navbar .ab-navbar-list .ab-navbar-group .ab-navbar-group-item {
+    margin: 0.5em 0;
+    background: rgba(22, 22, 22, 0.5);
+    color: #F7F7F7;
+    border-radius: 5px;
+  }
+  header .ab-navbar .ab-navbar-menu {
+    display: flex;
+    align-items: center;
+  }
+  header .ab-navbar .ab-navbar-menu .ab-navbar-menu-button {
+    display: block;
+    width: 50px;
+  }
+  header .ab-navbar .ab-navbar-menu .ab-navbar-menu-button .ab-navbar-menu-border {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    margin: 4px;
+    border: 1px solid #333333;
+    padding: 2px;
+    border-radius: 4px;
+    height: 30px;
+  }
+  header .ab-navbar .ab-navbar-menu .ab-navbar-menu-button .ab-navbar-menu-border .ab-navbar-menu-item {
+    width: 100%;
+    height: 3px;
+    background: #333333;
+    border-radius: 2px;
+    transition: all 0.3s ease-out;
+  }
+  header .ab-navbar .ab-navbar-menu:hover .ab-navbar-menu-button .ab-navbar-menu-item:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  header .ab-navbar .ab-navbar-menu:hover .ab-navbar-menu-button .ab-navbar-menu-item:nth-child(2) {
+    display: none;
+  }
+  header .ab-navbar .ab-navbar-menu:hover .ab-navbar-menu-button .ab-navbar-menu-item:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
+@media only screen and (min-width: 615px) {
+  header .ab-navbar .ab-navbar-group .ab-navbar-group-dead-item {
+    display: block;
+    color: #F7F7F7;
+  }
 }
 
 section .ab-landing-page {
