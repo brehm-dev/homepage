@@ -57,7 +57,7 @@ class Navigator {
 ;(function() {
     let menuTrigger = $('.ab-navbar-menu')
     let menuList = $('.ab-navbar-list');
-    let navi = new Navigator(menuList);
+    // let navi = new Navigator(menuList);
     // console.log(navi)
     menuTrigger.on('click', function(event) {
         // menuList.toggle(400)

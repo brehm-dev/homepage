@@ -35,10 +35,6 @@ img {
     opacity: 0;
   }
 }
-.ab-navbar-vanish-list {
-  animation: vanishList 1s;
-}
-
 header .ab-navbar {
   display: flex;
   position: fixed;
@@ -97,6 +93,7 @@ header .ab-navbar .ab-navbar-menu {
   header .ab-navbar .ab-navbar-list .ab-navbar-group {
     display: flex;
     flex-direction: column;
+    z-index: -1;
   }
   header .ab-navbar .ab-navbar-list .ab-navbar-group .ab-navbar-group-item {
     margin: 0.5em 0;
