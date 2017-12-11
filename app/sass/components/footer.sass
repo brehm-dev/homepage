@@ -1,0 +1,33 @@
+footer
+    .ab-footer
+        background: $fontColor
+        padding: 1em
+        .ab-social
+            display: flex
+            @media only screen and (max-width: 615px)
+                flex-direction: column
+            .ab-social-container
+                flex: 1
+                .ab-social-item
+                    text-align: center
+                    color: $bgColor
+                    margin-bottom: .2em
+                    label
+                        margin-right: .2em
+                    span
+                        margin-left: .2em
+                    span, label
+                        font-size: 1.6em
+                    .ab-social-phone
+                        width: 100%
+                        .ab-social-phone-container
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                    .ab-social-telefax
+                .ab-social-delimiter
+                    width: 70%
+                    height: 1px
+                    display: block
+                    background: $bgColor
+                    margin: 0 auto 1em auto

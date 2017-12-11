@@ -1,112 +1,83 @@
-@keyframes vanishList
-    0%
-        opacity: 1
-    20%
-        opacity: 0.8
-    40%
-        opacity: 0.6
-    60%
-        opacity: 0.4
-    80%
-        opacity: 0.2
-    100%
-        opacity: 0
-
 header
     .ab-navbar
-        display: flex
         position: fixed
-        top: 0
         width: 100%
-        background: $bgColor
-        justify-content: space-between
         font-size: 1.6em
-        .ab-navbar-brand
-            margin: 5px
-            .ab-brand
-                max-width: 40px
-        .ab-navbar-list
+        .ab-navbar-menu-bar
+            background: $bgColor
             display: flex
-            flex: 1
-            justify-content: center
-            align-items: center
-            .ab-navbar-dead-item
-                display: none
-                opacity: 0
-            .ab-navbar-group
-                display: flex
-                width: 100%
-                .ab-navbar-group-item
-                    display: flex
-                    flex: 1
-                    justify-content: center
-                    align-items: center
-                .ab-navbar-group-item:hover
-                    cursor: pointer
-                    background: $fontColor
-                    color: $bgColor
-                    border-radius: 2px
-        .ab-navbar-menu
-                display: none
-
-        @media only screen and (max-width: 615px)
-
+            justify-content: space-between
+            .ab-navbar-menu-brand
+                margin: 5px
+                .ab-brand
+                    max-width: 40px
+                    max-height: 40px
             .ab-navbar-list
-                flex-direction: column
-                font-size: 2.2em
-                font-weight: lighter
-                .ab-navbar-dead-item
-                    display: flex
-                    flex: 1
-                    width: 100%
+                display: flex
+                flex: 1
+                justify-content: center
+                align-items: center
                 .ab-navbar-group
                     display: flex
-                    flex-direction: column
-                    z-index: -1
-
+                    width: 100%
                     .ab-navbar-group-item
-                        margin: .5em 0
-                        background: $defaultBlack
-                        color: $bgColor
-                        border-radius: 5px
-                        .ab-navbar-link
-            .ab-navbar-menu
-                display: flex
-                align-items: center
-                .ab-navbar-menu-button
-                    display: block
-                    width: 50px
-                    .ab-navbar-menu-border
                         display: flex
-                        flex-direction: column
-                        align-items: stretch
-                        justify-content: space-around
-                        margin: 4px
-                        border: 1px solid $fontColor
-                        padding: 2px
-                        border-radius: 4px
-                        height: 30px
-                        .ab-navbar-menu-item
-                            width: 100%
-                            height: 3px
-                            background: $fontColor
-                            border-radius: 2px
-                            transition: all .3s ease-out
-            .ab-navbar-menu:hover
-
-                .ab-navbar-menu-button
-                    .ab-navbar-menu-item:nth-child(1)
-                        transform: rotate(45deg) translate(5px, 6px)
-                    .ab-navbar-menu-item:nth-child(2)
-                        display: none
-                    .ab-navbar-menu-item:nth-child(3)
-                        transform: rotate(-45deg) translate(5px, -6px)
-        @media only screen and (min-width: 615px)
-            .ab-navbar-group
-
-                .ab-navbar-group-item
-
-                .ab-navbar-group-dead-item
+                        flex: 1
+                        justify-content: center
+                        align-items: center
+                    .ab-navbar-group-item:hover
+                        cursor: pointer
+                        border-radius: 2px
+                        box-shadow: 0px 0px 9px -4px $defaultBlack
+                        .ab-navbar-link
+        .ab-navbar-mobile-list
+            display: none
+        @media only screen and (max-width: 615px)
+            .ab-navbar-menu-bar
+                position: absolute
+                width: 100%
+                .ab-navbar-list
                     display: block
-                    color: $bgColor
-
+                    position: absolute
+                    width: 100%
+                    z-index: -1
+                    top: -73px
+                    .ab-navbar-group
+                        flex-direction: column
+                        background: $bgColor
+                        .ab-navbar-group-item
+                            margin: 10px 0
+                .ab-navbar-menu-button-bar
+                    display: none
+                    @media only screen and (max-width: 615px)
+                        display: flex
+                        align-items: center
+                        .ab-navbar-menu-button
+                            display: block
+                            width: 50px
+                            .ab-navbar-menu-border
+                                display: flex
+                                flex-direction: column
+                                align-items: stretch
+                                justify-content: space-around
+                                margin: 4px
+                                border: 1px solid $fontColor
+                                padding: 2px
+                                border-radius: 4px
+                                height: 30px
+                                .ab-navbar-menu-item
+                                    width: 100%
+                                    height: 3px
+                                    background: $fontColor
+                                    border-radius: 2px
+                                    transition: all .3s ease-out
+                        .ab-navbar-menu-button:hover
+                            cursor: pointer
+                        .ab-navbar-menu-active-button
+                            .ab-navbar-menu-border
+                                .ab-navbar-menu-item:nth-child(1)
+                                    transform: rotate(45deg) translate(5px, 6px)
+                                .ab-navbar-menu-item:nth-child(2)
+                                    display: none
+                                .ab-navbar-menu-item:nth-child(3)
+                                    transform: rotate(-45deg) translate(5px, -6px)
