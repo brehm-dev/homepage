@@ -8,13 +8,13 @@
     activeButtonClass = 'ab-navbar-menu-active-button';
 
     function slideNavDown() {
-        for (let i = 1; i <= height.list; i++) {
+        for (let i = 1; i <= navHeight; i++) {
             let pos = navList.position().top;
             navList.css('top', pos + 1);
         }
     }
     function slideNavUp() {
-        for (let i = 1; i <= height.list; i++) {
+        for (let i = 1; i <= navHeight; i++) {
             let pos = navList.position().top;
             navList.css('top', pos - 1);
         }
