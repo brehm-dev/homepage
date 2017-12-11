@@ -7,28 +7,28 @@ html
         link(rel="stylesheet" href="css/style.css")
     body
         header
-            .ab-navbar
-                .ab-navbar-brand
-                    img.ab-brand(src="images/my_logo_trans.png")
-                .ab-navbar-list
-                    .ab-navbar-dead-item DUMMY
-                    .ab-navbar-group
-                        .ab-navbar-group-item#previous
-                            .ab-navbar-link
-                                span bisherige Arbeit
-                        .ab-navbar-group-item#aims
-                            .ab-navbar-link
-                                span berufliche Ziele
-                        .ab-navbar-group-item#about
-                            .ab-navbar-link
-                                span Über Mich
+            nav.ab-navbar
+                .ab-navbar-menu-bar
+                    .ab-navbar-menu-brand
+                        img.ab-brand(src="images/my_logo_trans.png")
+                    .ab-navbar-list
+                        .ab-navbar-group
+                            .ab-navbar-group-item#previous
+                                .ab-navbar-link
+                                    span bisherige Arbeit
+                            .ab-navbar-group-item#aims
+                                .ab-navbar-link
+                                    span berufliche Ziele
+                            .ab-navbar-group-item#about
+                                .ab-navbar-link
+                                    span Über Mich
+                    .ab-navbar-menu-button-bar
+                        .ab-navbar-menu-button#menu-button(data-activity="false")
+                            .ab-navbar-menu-border
+                                .ab-navbar-menu-item
+                                .ab-navbar-menu-item
+                                .ab-navbar-menu-item
 
-                .ab-navbar-menu
-                    .ab-navbar-menu-button
-                        .ab-navbar-menu-border
-                            .ab-navbar-menu-item
-                            .ab-navbar-menu-item
-                            .ab-navbar-menu-item
         section
             .ab-landing-page
                 .ab-landing-page-banner

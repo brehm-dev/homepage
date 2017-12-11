@@ -57,10 +57,44 @@ class Navigator {
 ;(function() {
     let menuTrigger = $('.ab-navbar-menu')
     let menuList = $('.ab-navbar-list');
-    // let navi = new Navigator(menuList);
-    // console.log(navi)
-    menuTrigger.on('click', function(event) {
-        // menuList.toggle(400)
+    let navList = $('.ab-navbar-list');
+
+    let activeButtonClass = 'ab-navbar-menu-active-button'
+
+    let navListTop = (navList.offset().top + navList.height());
+
+
+    let height = {
+        start: 0,
+        list: navList.height(),
+        bar: $('.ab-navbar-menu-bar').height()
+    }
+
+    function slideNavDown() {
+        for (let i = 1; i <= height.list; i++) {
+            let pos = navList.position().top;
+            navList.css('top', pos + 1);
+        }
+    }
+    function slideNavUp() {
+        for (let i = 1; i <= height.list; i++) {
+            let pos = navList.position().top;
+            navList.css('top', pos - 1);
+        }
+
+    }
+
+    $('#menu-button').on('click', function(event) {
+        let $trigger = $(this);
+        if ($trigger.data('activity')) {
+            $trigger.removeClass(activeButtonClass)
+            $trigger.data('activity', false)
+            slideNavUp()
+        } else {
+            $trigger.addClass(activeButtonClass);
+            $trigger.data('activity', true)
+            slideNavDown()
+        }
     });
 
 
