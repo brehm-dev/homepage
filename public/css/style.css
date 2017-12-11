@@ -71,7 +71,8 @@ header .ab-navbar .ab-navbar-menu {
     width: 100%;
   }
   header .ab-navbar .ab-navbar-list .ab-navbar-group {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
   header .ab-navbar .ab-navbar-list .ab-navbar-group .ab-navbar-group-item {
     margin: 0.5em 0;
