@@ -11,7 +11,6 @@
             padding: 1px
             width: 100%
             .ab-panel-item
-                box-shadow: 0px 0px 1px 1px $fontColor
                 background: $bgColor
                 padding: 5px
             .ab-panel-header
@@ -27,4 +26,11 @@
                     .ab-panel-list-item
                         padding-inline-start: 1em
                         font-weight: 200
+section:before
+    display: block
+    content: " "
+    margin-top: -50px
+    height: 50px
+    visibility: hidden
+    pointer-events: none
 

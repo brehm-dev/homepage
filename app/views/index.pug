@@ -13,15 +13,30 @@ html
                         img.ab-brand(src="images/my_logo_trans.png")
                     .ab-navbar-list
                         .ab-navbar-group
-                            .ab-navbar-group-item#previous
+                            .ab-navbar-group-item#nav-welcome
                                 .ab-navbar-link
-                                    span bisherige Arbeit
-                            .ab-navbar-group-item#aims
+                                    span
+                                        a(href="#welcome") Willkommen
+                            .ab-navbar-group-item#nav-php-mysql
                                 .ab-navbar-link
-                                    span berufliche Ziele
-                            .ab-navbar-group-item#about
+                                    span
+                                        a(href="#php-mysql") PHP + MySQL
+                            .ab-navbar-group-item#nav-javascript
                                 .ab-navbar-link
-                                    span Über Mich
+                                    span
+                                        a(href="#javascript") NodeJS + jQuery + HTML5 + CSS3
+                            .ab-navbar-group-item#nav-linux-server
+                                .ab-navbar-link
+                                    span
+                                        a(href="#linux-server" style="padding-top: 50px;") Linux Server
+                            .ab-navbar-group-item#nav-webdesign
+                                .ab-navbar-link
+                                    span
+                                        a(href="#webdesign") Webdesign
+                            .ab-navbar-group-item#nav-aboutme
+                                .ab-navbar-link
+                                    span
+                                        a(href="#aboutme") Über Mich
                     .ab-navbar-menu-button-bar
                         .ab-navbar-menu-button#menu-button(data-activity="false")
                             .ab-navbar-menu-border
@@ -38,14 +53,14 @@ html
                                 span.ab-cardsite-title-name Andreas Brehm
                                 span.ab-cardsite-title-profession Fachinformatiker seit 2014
                                 span.ab-cardsite-title-specialization Anwendungsentwicklung
-        section.ab-section
+        section.ab-section#welcome
             .ab-section-container
                 .ab-section-panel
                     .ab-panel-header.ab-panel-item
                         span Willkommen
                     .ab-panel-body.ab-panel-item
                         p Herzlich willkommen auf meiner Seite mit der ich mich als Webentwickler präsentieren möchte. Ich hoffe die Navigation ist selbsterklärend, ansonsten bin ich für Fragen oder Anregungen immer herzlich offen.
-        section.ab-section
+        section.ab-section#php-mysql
             .ab-section-container
                 .ab-section-panel
                     .ab-panel-header.ab-panel-item
@@ -69,11 +84,11 @@ html
                             li.ab-panel-list-item Doctrine 2
                             li.ab-panel-list-item Twig
                             li.ab-panel-list-item UML
-        section.ab-section
+        section.ab-section#javascript
             .ab-section-container
                 .ab-section-panel
                     .ab-panel-header.ab-panel-item
-                        span NodeJS + jQuery + CSS3
+                        span NodeJS + jQuery + HTML5 + CSS3
                         span
                             a(href="https://github.com/AndreasBrehm/cardsite" target="_blank") Repository dieser Seite
                     .ab-panel-body.ab-panel-item
@@ -90,7 +105,7 @@ html
                             li.ab-panel-list-item Media Queries
                             li.ab-panel-list-item Flexbox
                             li.ab-panel-list-item Grid
-        section.ab-section
+        section.ab-section#linux-server
             .ab-section-container
                 .ab-section-panel
                     .ab-panel-header.ab-panel-item
@@ -98,7 +113,7 @@ html
                     .ab-panel-body.ab-panel-item
                         p Im meinem ersten Job nach der Ausbildung, kam ich das erste mal so richtig mit Linux als Server und Desktop in Berührung. Beim Server kam anfänglich Debian zum Einsatz, später verwendete ich Ubuntu für beide Bereiche. Heute kann ich auf Ubuntu bei der Arbeit nicht verzichten -  Es solides Betriebssystem.
                     .ab-panel-footer.ab-panel-item
-        section.ab-section
+        section.ab-section#webdesign
             .ab-section-container
                 .ab-section-panel
                     .ab-panel-header.ab-panel-item
@@ -108,6 +123,23 @@ html
                     .ab-panel-footer.ab-panel-item
                         ul.ab-panel-list
                             li.ab-panel-list-item
+        section.ab-section#aboutme
+            .ab-section-container
+                .ab-section-panel
+                    .ab-panel-header
+                        span Über Mich
+                    .ab-panel-body
+                        span Orientierung
+                        p Mein Interesse an Computern wurde, in jungen Jahren durch’s Spielen, geweckt. Bei Problemen versuchte ich diese selbst zu lösen und entwickelte dabei eine Affinität zu der Hardware eines PCs. Als ich 12 Jahre alt war, konnte ich meinen ersten Fertig-Computer über meine Eltern finanzieren, den ich dann auch auseinander nehmen durfte um bestimmte Komponente zu erweitern. Der erste und einzige Fertig-PC von Mediamarkt… Die Upgrades meines heimischen Stand-PCs, richten sich immer nach dem dafür vorgesehenem Budget, was meistens immer knapp ist ;P
+                        p Nach erhalt der mittlere Reife, begann ich eine Ausbildung bei einem regionalem Unternehmen in der Chemiebranche. Nach zwei Jahren war mir klar, dass die Chemiebranche auf keinen Fall meine berufliche Zukunft sein sollte - darauf brach ich die Ausbildung ab.
+                        p Ich hatte nach Fähigkeiten gesucht die ich besonders gut konnte um damit einen Beruf auszuüben. Auf das Kochen hatte ich es eingeschränkt und aus finanzieller Not, begann ich bei einem sehr bekannten Schnellrestaurant zu arbeiten. Aus familiären Gründen arbeitete ich etwa vier Jahre in der System-Gastronomie und erlangte dadurch erweiterte Kenntnisse und tiefe Einblicke in der Branche.
+                        p Ab einem bestimmten Alter wollte ich mich entschieden, ob ich mein leben lang in der Gastronomie verbringe oder etwas Neues versuche zu schaffen. Und entschied mich dazu eine Umschulung zum Fachinformatiker zu machen. Bei der Abschlussarbeit, die wohl mein Bestehen sicherte, entwickelte ich eine Warenwirtschaft für das Inventar des Ausbildungsbetriebes in PHP und MySQL. Am Ende der zwei mühseligen Jahre, erlangte ich das Zertifikat der IHK zum Fachinformatiker - Anwendungsentwicklung.
+                        span Anfänge
+                        p Ich hatte noch überhaupt keine Praxiserfahrung und nahm den ersten Job in einem sehr kleinen Unternehmen, für entsprechend wenig Lohn, an. Dadurch konnte ich wertvolle Erfahrungen in Webtechnologien sammeln. Für den Front-End-Bereich hatte es bis dato nicht gereicht, worauf ich mich im Bereich Webdesign weiter gebildet habe.
+                        p Nach kläglichen Versuchen eine Selbstständigkeit aufzubauen, fand ich eine Stelle bei einem größeren Unternehmen, was mir Zugang zur objektorientierten Entwicklung ermöglichte. Im laufe der Jahre entwickelte ich für verschiede Bereiche der IT leichtes Interesse, wie Homeautomation, Robotik, Embeded Programming, Appentwicklung für den mobilen Bereich. Aber nichts davon fesselt mich wie das Internet selbst.
+                        p Dank der heutigen objektorientierten Programmiersprachen, haben wir als Entwickler die Möglichkeit unser oder auch das der anderen Leben, einfacher zu gestalten.
+                        p Als jahrelanger Windows-Nutzer und inzwischen auch Leider-MacOS-Nutzer, bin ich froh Linux für meine Entwicklungsumgebung einsetzen zu können.
+
         footer
             .ab-footer
                 .ab-social

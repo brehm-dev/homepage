@@ -59,8 +59,6 @@ header .ab-navbar .ab-navbar-menu-bar .ab-navbar-list .ab-navbar-group .ab-navba
 }
 header .ab-navbar .ab-navbar-menu-bar .ab-navbar-list .ab-navbar-group .ab-navbar-group-item:hover {
   cursor: pointer;
-  border-radius: 2px;
-  box-shadow: 0px 0px 9px -4px rgba(22, 22, 22, 0.5);
 }
 header .ab-navbar .ab-navbar-mobile-list {
   display: none;
@@ -75,7 +73,7 @@ header .ab-navbar .ab-navbar-mobile-list {
     position: absolute;
     width: 100%;
     z-index: -1;
-    top: -73px;
+    top: -169px;
   }
   header .ab-navbar .ab-navbar-menu-bar .ab-navbar-list .ab-navbar-group {
     flex-direction: column;
@@ -206,7 +204,6 @@ header .ab-navbar .ab-navbar-mobile-list {
   width: 100%;
 }
 .ab-section .ab-section-container .ab-section-panel .ab-panel-item {
-  box-shadow: 0px 0px 1px 1px #333333;
   background: #F7F7F7;
   padding: 5px;
 }
@@ -223,6 +220,15 @@ header .ab-navbar .ab-navbar-mobile-list {
 .ab-section .ab-section-container .ab-section-panel .ab-panel-footer .ab-panel-list .ab-panel-list-item {
   padding-inline-start: 1em;
   font-weight: 200;
+}
+
+section:before {
+  display: block;
+  content: " ";
+  margin-top: -50px;
+  height: 50px;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 footer .ab-footer {
