@@ -45,7 +45,8 @@ class Navigator {
             $el.css('margin', '0')
             for (let reg of this.register) {
                 if (reg.id === id) {
-                    console.log(reg.children.element.height(0))
+                    reg.children.element.addClass('ab-navbar-vanish-list')
+                    // console.log()
                 }
             }
         }        // this.elements.each(function(id, el) {

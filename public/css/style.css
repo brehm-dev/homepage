@@ -15,6 +15,30 @@ img {
   max-width: 100%;
 }
 
+@keyframes vanishList {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.ab-navbar-vanish-list {
+  animation: vanishList 1s;
+}
+
 header .ab-navbar {
   display: flex;
   position: fixed;
