@@ -1,4 +1,29 @@
 "use strict"
+class SideFixer {
+    constructor() {
+        this.body = $(document.body);
+        this.header = this.body.find('header');
+        this.navbar = this.body.find('nav').children('.ab-navbar-menu-bar');
+        this.navlist = this.navbar.find('.ab-navbar-list')
+        let h = {
+            list: this.navlist.height(),
+            bar: this.navbar.height()
+        }
+        if (h.list > h.bar) {
+            this.navlist.css('top', '-' + (h.list - h.bar) + 'px')
+        }
+    }
+
+    scrollTo(elem) {
+        let elemPos = $(elem).position()
+        let navH = this.navbar.height();
+        $('html, body').animate({
+            scrollTop: (elemPos.top - navH)
+        }, 400);
+        console.log(this)
+    }
+}
+
 ;(function() {
     /**
      * menu button
@@ -6,7 +31,7 @@
     let navList = $('.ab-navbar-list'),
     navHeight = navList.height(),
     activeButtonClass = 'ab-navbar-menu-active-button';
-    console.log(navHeight)
+    let sf = new SideFixer();
     function slideNavDown() {
         for (let i = 1; i <= navHeight; i++) {
             let pos = navList.position().top;
@@ -20,6 +45,16 @@
         }
     }
 
+    $('a').on('click', function(event) {
+        if (this.href.indexOf(location.href) !== 0) {
+            return true;
+        } else {
+            event.preventDefault()
+            let anchorPos = $(this.attributes.href.value).position()
+            sf.scrollTo(this.attributes.href.value)
+
+        }
+    })
 
     $.fn.extend({
         class: function() {
