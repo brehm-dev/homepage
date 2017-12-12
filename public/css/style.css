@@ -30,7 +30,7 @@ header .ab-navbar {
   font-size: 1.6em;
 }
 header .ab-navbar .ab-navbar-menu-bar {
-  background: #F7F7F7;
+  background: #F7F7F799;
   display: flex;
   justify-content: space-between;
 }
