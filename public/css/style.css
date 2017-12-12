@@ -142,7 +142,8 @@ header .ab-navbar .ab-navbar-mobile-list {
 }
 .ab-cardsite .ab-cardsite-banner .ab-cardsite-layer {
   display: flex;
-  background: rgba(22, 22, 22, 0.23);
+  background: rgba(207, 207, 207, 0.57);
+  box-shadow: 0px 0px 10px 1px rgba(22, 22, 22, 0.5) inset;
   width: 100%;
   justify-content: center;
   padding: 1em 0;
