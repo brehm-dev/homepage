@@ -83,6 +83,21 @@ class SideFixer {
                 }
             }
         });
+    let tSec = $('section')
+    let testNav = $('.ab-navbar-menu-bar');
+    // let sectionPositions =
+    // sectionPositions
+        console.log(tSec.first())
+
+
+    $(document).on('scroll', function(event) {
+        let timeStamp = event.timeStamp;
+        // console.log(sectionPositions.next().value)
+        // console.log(event.pageY)
+        // for (let e in event) {
+        //     console.log(e)
+        // }
+    })
 
     $('#menu-button').on('click', function(event) {
         let $btn = $(this);
