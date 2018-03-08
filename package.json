@@ -1,6 +1,6 @@
 {
-  "name": "Homepage Andreas Brehm",
-  "version": "1.0",
+  "name": "homepage",
+  "version": "0.1.0",
   "description": "my personal homepage",
   "main": "server.js",
   "scripts": {
