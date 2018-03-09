@@ -17,16 +17,17 @@ img {
 }
 
 a {
-  color: rgba(22, 22, 22, 0.5);
+  color: #333333;
 }
 
 a:link {
-  color: rgba(22, 22, 22, 0.5);
+  color: #333333;
 }
 
 header {
   width: 100%;
   height: 100%;
+  color: #333333;
 }
 header .ab-banner {
   display: flex;
@@ -35,8 +36,8 @@ header .ab-banner {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
   text-align: center;
+  font-size: 2em;
   line-height: 2em;
 }
 header .ab-banner .ab-banner-logo-container {
