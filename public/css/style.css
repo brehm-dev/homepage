@@ -143,6 +143,7 @@ header .ab-banner .ab-banner-social-container .ab-banner-social-item .ab-banner-
   background: #F7F7F7;
   font-size: 1.6em;
   margin: 2px 0;
+  line-heigth: 1.03em;
 }
 .ab-section .ab-section-container {
   display: flex;
