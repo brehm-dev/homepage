@@ -12,25 +12,23 @@ html(lang="de")
                     img.ab-banner-logo(src="images/my_logo_trans.png")
                 .ab-banner-title-container
                     .ab-banner-title-name Andreas Brehm
-                    .ab-banner-title-profession Fachinformatiker
+                    .ab-banner-title-profession Webentwickler
                 .ab-banner-social-container
                     .ab-banner-social-item
-                        a.ab-banner-social-link(href="https://www.facebook.com/BrehmAndreas" target="_blank")
-                            img.ab-banner-social-image(src="images/social/facebook.png")
-                            span.ab-banner-social-titel Facebook
+                        a.ab-banner-social-link(href="mailto:andreas@brehm.me")
+                            img.ab-banner-social-image(src="images/social/email.png")
+                            span.ab-banner-social-titel Email
                     .ab-banner-social-item
-                        a.ab-banner-social-link(href="https://twitter.com/BrehmAndreas" target="_blank")
-                            img.ab-banner-social-image(src="images/social/twitter.png")
-                            span.ab-banner-social-titel Twitter
+                        a.ab-banner-social-link(href="https://telegram.me/AndreasBrehm" target="_blank")
+                            img.ab-banner-social-image(src="images/social/t_logo.png")
+                            span.ab-banner-social-titel Telegram
                     .ab-banner-social-item
-                        a.ab-banner-social-link(href="https://plus.google.com/u/0/111100229847445311610" target="_blank")
-                            img.ab-banner-social-image(src="images/social/googleplus.png")
-                            span.ab-banner-social-titel Google
-                    .ab-banner-social-item
-                        a.ab-banner-social-link(href="https://github.com/AndreasBrehm" target="_blank")
-                            img.ab-banner-social-image(src="images/social/github.png")
-                            span.ab-banner-social-titel Github
-
+                        a.ab-banner-social-link(href="threema:umse" id="threema-slider")
+                            img.ab-banner-social-image(src="images/social/threema.png")
+                            span.ab-banner-social-titel Threema
+                    .ab-banner-social-item.centerFlexContent.hiddenContent(id="threema-qr")
+                        .ab-banner-social-slide
+                            img.ab-banner-social-slide-content(src="images/social/threema-qr.png")
         section.ab-section#welcome
             .ab-section-container
                 .ab-section-panel
@@ -81,5 +79,5 @@ html(lang="de")
                                 .ab-social-phone-container
                                     label Telefon
                                     span +49 441 77707916
-        //- script(src="jquery/jquery.js")
-        //- script(src="js/workflow.js")
+        script(src="jquery/jquery.min.js")
+        script(src="js/workflow.js")
