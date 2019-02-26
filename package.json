@@ -4,7 +4,8 @@
   "description": "my personal homepage",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch --style=compressed --sourcemap=none --quiet app/sass/style.sass:public/css/style.css"
   },
   "repository": {
     "type": "git",
