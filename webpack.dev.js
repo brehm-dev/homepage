@@ -9,7 +9,10 @@ module.exports = {
         filename: "bundle.js",
     },
     target: "web",
-    // watch: true,
+    node: {
+        global: true
+    },
+    watch: true,
     devServer: {
         contentBase: path.join(__dirname, 'app'),
         filename: "./app/js/entry.js",
@@ -58,3 +61,4 @@ module.exports = {
         template: "app/views/index.twig.js"
     })]
 };
+
