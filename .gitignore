@@ -7,7 +7,10 @@ app/pub/
 cgi-bin/
 tmp/
 cache/
+.idea/
 npm-debug.log
 package-lock.json
 package.lock
 *.css.map
+build/
+/assets/

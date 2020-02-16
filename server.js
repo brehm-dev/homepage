@@ -1,18 +1,15 @@
-"use strict"
-// packages
 let express = require('express');
 let app = express();
 
-// app setup
-app.set('view engine', 'pug');
+
+
+app.set('view engine', 'twig');
 app.set('views', './app/views/');
 
-app.use('/images', express.static('./public/images'));
-app.use('/js', express.static('./public/js'))
-app.use('/css', express.static('./public/css'))
-app.use('/jquery', express.static('./node_modules/jquery/dist/'));
+app.use('/assets', express.static('./assets'));
+app.use('/assets/css', express.static('.public/css'));
+app.use('/assets/js', express.static('.public/js'));
 
-// set routes
 
 app.use('/', function (req, res) {
     let dateNow = new Date();
@@ -40,11 +37,10 @@ app.use('/', function (req, res) {
     } else {
         isMobile = false;
     }
-    res.render('index', {
+    res.render('index.html.twig', {
         whatsappLink: whatsapp.generate(isMobile),
         thisYear: dateNow.getFullYear()
     });
 });
 
-// server start
 app.listen(8000);
