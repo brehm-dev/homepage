@@ -1,3 +1,14 @@
 $defaultBlack: rgba(22,22,22,.5)
 $bgColor: #F7F7F7
 $fontColor: #5F5F5F
+
+@mixin fx-column
+    display: flex
+    flex-direction: column
+@mixin fx-row
+    display: flex
+
+@mixin font-face($name, $src)
+    @font-face
+        font-family: $name
+        src: url($src)

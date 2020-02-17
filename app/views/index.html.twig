@@ -3,12 +3,25 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
-        <link rel="shortcut icon" type="image/x-icon" href="{{ favicon.src.default }}">
+        <meta name="author" content="Andreas Brehm">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ favicon.src }}">
+        <link rel="stylesheet" href="style.css">
         <title>Andreas Brehm</title>
     </head>
     <body>
-    <img src="{{ logo.src.default }}" alt="{{ logo.alt }}">
-        <h1>NUR EIN TEST2</h1>
+        <header>
+            <div class="business-card">
+                <div class="business-card-logo">
+                    <img src="{{ logo.src }}" alt="{{ logo.alt }}">
+                </div>
+                <div class="business-card-plate">
+                    <div class="business-card-plate-entry"><span>Andreas Brehm</span></div>
+                    <div class="business-card-plate-entry"><span>Webdeveloper</span></div>
+                </div>
+                <div class="business-card-decription">
+                    <p>Hallo, ich bin Andreas Brehm, 33 Jahre alt, und habe schon insgesamt fünf Jahre Erfahrung, als Webentwickler, Erfahrung sammeln können.</p>
+                </div>
+            </div>
+        </header>
     </body>
-{#    <script type="text/javascript" src="bundle.js" async></script>#}
 </html>

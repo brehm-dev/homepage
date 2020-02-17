@@ -7,14 +7,15 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/build"),
         filename: "bundle.js",
+        // publicPath: "/build/"
     },
     target: "web",
     node: {
         global: true
     },
-    watch: true,
+    // watch: true,
     devServer: {
-        contentBase: path.join(__dirname, 'app'),
+        contentBase: path.join(__dirname, 'build'),
         filename: "./app/js/entry.js",
         hotOnly: true,
         compress: true,
@@ -22,6 +23,12 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: {
+                    loader: 'css-loader'
+                }
+            },
             {
                 test: /\.twig$/,
                 use: [
@@ -34,18 +41,42 @@ module.exports = {
             {
                 test: /\.sass$/,
                 use: [
-                    'css-loader',
-                    'sass-loader'
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].css"
+                        }
+                    },
+                    {
+                        loader: "extract-loader",
+                        options: {
+                            publicPath: "../"
+                        }
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                outFile: "build/[name].css"
+                            }
+                        }
+                    },
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif|ico)$/i,
+                test: /\.(png|jpe?g|gif|ico|woff)$/i,
                 use: [
                     {
-                        loader: 'file-loader?name=[name].[ext]',
+                        loader: 'file-loader',
+                        options: {
+                           name: '[name].[ext]'
+                        }
                     },
                 ],
-            }
+            },
 
         ]
     },

@@ -1,14 +1,20 @@
 @import 'components/variables'
-
+.fx-col
+    display: flex
+    flex-direction: column
+.fx-row
+    display: flex
+@font-face
+    font-family: BebasNeue
+    src: url("/BebasNeue-Regular.woff")
 *
     margin: 0
     padding: 0
     text-decoration: none
     list-style-type: none
-    font-family: 'Raleway', sans-serif
     letter-spacing: .03em
-html
-    font-size: 62.5%
+    font-family: BebasNeue, SansSerif
+
 img
     max-width: 100%
     max-height: 100%
@@ -16,8 +22,12 @@ a
     color: $fontColor
 a:link
     color: $fontColor
+body
+    @include fx-column
+    height: 100vh
+    justify-content: center
+    header
+        @include fx-column
+        align-items: center
 
-@import 'components/entrance'
 @import 'components/cardsite'
-@import 'components/section'
-@import 'components/footer'
