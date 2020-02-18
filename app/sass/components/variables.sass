@@ -1,6 +1,10 @@
 $defaultBlack: rgba(22,22,22,.5)
 $bgColor: #F7F7F7
 $fontColor: #5F5F5F
+$tabletMedium: 767px
+$tabletLarge: 991px
+$phone: 479px
+
 
 @mixin fx-column
     display: flex
@@ -12,3 +16,5 @@ $fontColor: #5F5F5F
     @font-face
         font-family: $name
         src: url($src)
+
+@mixin m-query()

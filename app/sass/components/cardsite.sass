@@ -3,8 +3,14 @@
     flex-direction: column
     align-items: center
     background: #5F5F5F
+    width: 50vw
+    @media only screen and (max-width: $tabletLarge)
+        width: 40vw
+    @media only screen and (max-width: $tabletMedium)
+        width: 60vw
+    @media only screen and (max-width: $phone)
+        width: 100vw
     .business-card-logo
-        width: 26vw
         img
             width: 100%
             height: auto
@@ -16,4 +22,3 @@
     .business-card-decription
         @include fx-column
         p
-            width: 26vw
