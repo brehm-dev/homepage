@@ -39,14 +39,7 @@ class CoordsGenerator {
             }
         };
 
-        this.Align = {
-            front:  { x:   0,   y:      0, z: 100 },
-            left:   { x:   0,   y:    -90, z: 100 },
-            right:  { x:   0,   y:     90, z: 100 },
-            back:   { x:   0,   y:    180, z: 100 },
-            top:    { x:  90,   y:      0, z: 100 },
-            bottom: { x: -90,   y:      0, z: 100 }
-        };
+
 
         this.calculate.left = () => {
             this.Align.front    = Rotator.left(this.Align.front);
@@ -83,6 +76,15 @@ class CoordsGenerator {
             output[align] = this.Generator.rotate(this.Align[align]);
         }
         return output;
+    }
+    getTransitions() {
+        let transitions = {};
+        for (let cords in this.Align) {
+            for (let i = 0; i < 5; i++) {
+
+            }
+            console.log(this.Align[cords])
+        }
     }
 
 }

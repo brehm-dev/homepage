@@ -1,6 +1,7 @@
-const CoordsGenerator = require('./coords-generator');
-// const Cache = require('./cache');
 const StateMachine = require('./state-machine');
+const Transition = require('./transition')
+const Constants = require('./constants');
+const State = require('./state');
 
 class TransformScanner {
     static scan(element) {
@@ -20,50 +21,70 @@ class ResolutionScanner {
 
 class Box {
     constructor(box) {
-        this.name = StateMachine.UNIT.box;
-        this.StateMachine = new StateMachine(this.name);
         this.version = '2.9.3';
-        let Filter = (element) => {
-            const Scanner = (el, name) => {
-                return Writer(el,name);
-
-            };
-            const Writer = (el, name) => {
-                return {
-                    name: name,
-                    dom: el,
-                    resolution: ResolutionScanner.scan(el),
-                    transform: TransformScanner.scan(el)
-                }
-            };
-            if (element.length > 1) {
-                let coords = {};
-                for (let e of element) {
-                    const el = $(e);
-                    const name = el.data('orientation');
-                    if (StateMachine.TOKEN[name]) {
-                        coords[name] = Scanner(el, StateMachine.UNIT.page[name]);
-                    }
-                }
-                return coords;
-            } else {
-                return Scanner(element, StateMachine.UNIT[element.data('orientation')]);
+        this.stage = this.extractProperties(box.parent());
+        this.box = this.extractProperties(box);
+        this.pages = this.extractBulkProperties(box.children());
+    }
+    extractProperties(data) {
+        const name = data.data('orientation');
+        const time = Date.now();
+        return {
+            name: name,
+            eventId: Constants.SERVICE[name],
+            dom: data,
+            timestamp: time
+        }
+    }
+    extractBulkProperties(list) {
+        const time = Date.now();
+        let result = {};
+        for (let e of list) {
+            let entry = $(e);
+            const name = entry.data('orientation');
+            result[name] = {
+                eventId: Constants.SERVICE.page[name],
+                dom: entry,
+                timestamp: time
             }
-        };
-
-        this.stage = Filter(box.parent());
-        this.box = Filter(box);
-        this.pages = Filter(box.children());
-        this.StateMachine.init(this);
-        console.log(this)
-
+        }
+        return result;
     }
 }
 
 
 class BoxHelper {
     constructor(options) {
-        this.box = new Box($(options.box));
+        const BOX = $(options.box)
+        // let box = {
+        //     stage:
+        // };
+
+
+        this.Box = new Box($(options.box));
+        let PageGenerator = new Transition(4);
+        let transitions = {
+            front: PageGenerator.next(),
+            left: PageGenerator.next(),
+            right : PageGenerator.next(),
+            back: PageGenerator.next(),
+            top: PageGenerator.next(),
+            bottom: PageGenerator.next()
+        }
+
+        const states = {
+            front: new State(transitions.front.name,)
+        }
+
+
+        // const translations = {
+        //     stage: new TransitionGenerator(this.Box.stage),
+        //     box: new TransitionGenerator(this.Box.box),
+        //     pages: new TransitionGenerator(this.Box.pages)
+        // };
+        // this.PagesStateMachine = new StateMachine(box.pages, , "test2", "test3");
+        // let generator = new TransitionGenerator()
+        // this.StateMachine.init(box);
 
 
 

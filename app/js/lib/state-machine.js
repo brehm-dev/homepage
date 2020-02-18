@@ -1,65 +1,22 @@
-const Cache = require('./cache');
+// const Cache = require('./cache');
 
-const COLLECTION = {
-    UNIT: {
-        stage: 'stage',
-        box: 'stage.box',
-        page: {
-            front: 'stage.box.page.front',
-            left: 'stage.box.page.left',
-            right: 'stage.box.page.right',
-            back: 'stage.box.page.back',
-            top: 'stage.box.page.top',
-            bottom: 'stage.box.page.bottom'
-        }
-    },
-    ACTION: {
-        SPIN: {
-            LEFT: 'spin.left',
-            RIGHT: 'span.right',
-            UP: 'spin.up',
-            DOWN: 'spin.down'
-        }
-    },
-    SLUG: {
-        PAGES: 'pages',
-        BOX: 'box',
-        STAGE: 'stage',
-    },
-    TOKEN: {
-        stage: 'stage',
-        box: 'box',
-        front: 'front',
-        left: 'left',
-        right: 'right',
-        back: 'back',
-        top: 'top',
-        bottom: 'bottom'
-    },
-    STATE: {
-        // all box items were encountered
-        INITIALIZED: 'initialized',
-        STARTED: 'started'
+
+class AbstractStateMachine {
+    constructor(object, states, transitions, eventDispatcher) {
+        this.object = object;
+        this.states = states;
+        this.transitions = transitions;
+        this.evetDispatcher = eventDispatcher;
     }
-};
+}
 
-
-
-class StateMachine {
-    constructor(targetName) {
-        const name = 'state-machine';
-        this.name = `${name}.${COLLECTION.UNIT.box}`;
-        this.Cache = new Cache(`${name}.${targetName}`);
+class StateMachine extends AbstractStateMachine {
+    constructor(object, states, transitions, eventDispatcher) {
+        super(object, states, transitions, eventDispatcher)
     }
-    init(obj) {
-        this.Cache.add({
-            status: COLLECTION.STATE.INITIALIZED,
-            data: [obj[COLLECTION.SLUG.STAGE], obj[COLLECTION.SLUG.BOX], obj[COLLECTION.SLUG.PAGES]]
-        });
-    }
-
-    getName() {
-        return this.name;
+    static generateStateMachine(object, states, transitions, eventDispatcher) {
+        const stateMachine = new this(object, states, transitions, eventDispatcher);
+        console.log(stateMachine);
     }
 
     static get ACTION() {
