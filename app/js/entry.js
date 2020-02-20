@@ -1,14 +1,12 @@
 import $ from 'jquery';
 window.$ = $;
 import BoxBuilder from './box-builder';
-
 import 'app/sass/style.sass';
 import 'fonts/bebas-neue/BebasNeue-Regular.woff';
 
 
 
-let bBuilder = new BoxBuilder({
+let Box = new BoxBuilder({
     box: 'main.box',
-    pageKey: "orientation",
+    alignment: "alignment",
 });
-// console.log(bBuilder)

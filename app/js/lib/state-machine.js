@@ -1,46 +1,46 @@
-// const Cache = require('./cache');
+const Cache = require('./cache');
+const CONSTANTS = require('./constants');
+const EventDispatcher = require('./event-dispatcher');
 
+const ACTION = {
+    SPIN: {
+        LEFT: 'spin.left',
+        RIGHT: 'spin.right',
+        UP: 'spin.up',
+        DOWN: 'spin.down'
+    }
+};
 
 class AbstractStateMachine {
     constructor(object, states, transitions, eventDispatcher) {
+        this.cache = new Cache();
         this.object = object;
         this.states = states;
         this.transitions = transitions;
-        this.evetDispatcher = eventDispatcher;
+        this.eventDispatcher = new EventDispatcher();
+
+
     }
 }
 
 class StateMachine extends AbstractStateMachine {
     constructor(object, states, transitions, eventDispatcher) {
         super(object, states, transitions, eventDispatcher)
-    }
-    static generateStateMachine(object, states, transitions, eventDispatcher) {
-        const stateMachine = new this(object, states, transitions, eventDispatcher);
-        console.log(stateMachine);
-    }
 
-    static get ACTION() {
-        return COLLECTION.ACTION;
-    }
-
-    static get ID() {
-        return COLLECTION.ID;
-    }
-
-    static get UNIT() {
-        return COLLECTION.UNIT;
-    }
-
-    static get TOKEN() {
-        return COLLECTION.TOKEN;
-    }
-
-    static get SLUG() {
-        return COLLECTION.SLUG;
-    }
-
-    static get STATE() {
-        return COLLECTION.STATE;
+        this.eventDispatcher.addListner(ACTION.SPIN.LEFT, () => {
+            console.log(this.transitions[CONSTANTS.PAGES.front])
+            const oldCoords = object.spinLeft();
+        });
+        const prevEventDataId = this.cache.insert({
+            name: ACTION.SPIN.LEFT,
+            state: states,
+            object: object,
+            states: states,
+            transitions: transitions
+        });
+        this.eventDispatcher.eventAction(ACTION.SPIN.LEFT);
+        // this.
+        // console.log()
     }
 }
 

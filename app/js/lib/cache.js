@@ -1,32 +1,53 @@
-class Storage {
-    constructor() {
-        this._storage = [];
+const STORAGE = {};
+const SECRET = 'bFSNe0kU52A9c66sN9wKbWK%G%V#ziMD';
+const AGENT = {
+    id: () => {
+        const now = Date.now();
+        return `${btoa(SECRET + now)}`.replace('=', '');
+    },
+};
 
-    }
-    initialize() {
-        this.template = (data) => {
-            const time = Date.now();
-            const out = {
-                id: btoa(this.name + time),
-                name: this.name,
-                timestamp: time,
-                data: data
+
+class Storage {
+    constructor(storageName) {
+        this.name = storageName;
+        this.Helper = {
+            read: {
+                all: () => {
+                    return STORAGE;
+                },
             }
-            return out;
         };
     }
-    add(data) {
-        this._storage.push(this.template(data))
+    findAll() {
+        return this.Helper.read.all();
+    }
+    insert(data) {
+        const id = AGENT.id();
+        if (!data) {
+            throw Error("no data entered");
+        }
+        STORAGE[id] = {
+            created: Date.now(),
+            updated: null,
+            data: data
+        };
+        return id;
     }
 }
 
 class Cache extends Storage {
-    constructor(name, base) {
-        super();
-        this.name = name;
-        this.base = base;
-        this.initialize()
-        this.add("init commit");
+    constructor(name) {
+        if (!name) {
+            const name = AGENT.id()
+        }
+        super(name);
+        // const testId = this.insert("test");
+        // console.log(this.findAll())
+        // const Database = this
+
+        // this.initialize()
+        // this.add("init commit");
     }
 }
 

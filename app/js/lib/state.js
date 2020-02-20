@@ -1,32 +1,20 @@
 const TYPE = {
-    INITIAL: 'initial',
-    NORMAL: 'normal',
-    FINAL: 'final'
+    INITIAL:    0,
+    ACTIVE:     1,
+    FINAL:      3
 };
 
 class State {
-    constructor(name, type, transition) {
-        this.name = name;
+    constructor(target, type, transition) {
+        this.target = target;
         this.type = type;
         this.transition = transition;
-    }
-    isInitial() {
-        // return this.type == TYPE.INITIAL ? true : false;
     }
     getTransition() {
         return this.transition;
     }
-    static get type() {
+    static get TYPE() {
         return TYPE;
-    }
-
-    static getInstance(translations) {
-        let states = {};
-        for (let i = 0; translations.length; i++) {
-            if (i == 0) {
-                states[translations[i].name] = new this(translations[i].name, TYPE.INITIAL, translations[i].content);
-            }
-        }
     }
 }
 

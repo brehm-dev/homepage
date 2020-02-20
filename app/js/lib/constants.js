@@ -19,14 +19,7 @@ const COLLECTION = {
             bottom: 'stage.box.page.bottom'
         }
     },
-    ACTION: {
-        SPIN: {
-            LEFT: 'spin.left',
-            RIGHT: 'span.right',
-            UP: 'spin.up',
-            DOWN: 'spin.down'
-        }
-    },
+
     SLUG: {
         PAGES: 'pages',
         BOX: 'box',
