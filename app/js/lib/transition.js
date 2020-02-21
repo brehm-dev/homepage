@@ -68,11 +68,7 @@ class Transition {
     }
     next() {
         if (this.index < Object.getOwnPropertyNames(Constants.PAGES).length) {
-            const serviceObjectName = this.iterator.next().value;
-            return {
-                name: serviceObjectName,
-                transition: this.getCoordinate(serviceObjectName)
-            };
+            return this.getCoordinate(this.iterator.next().value)
         } else {
             this.index = 0;
             return false;

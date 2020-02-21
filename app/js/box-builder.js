@@ -3,13 +3,63 @@ const StateMachine      = require('./lib/state-machine');
 const Transition        = require('./lib/transition');
 const Constants         = require('./lib/constants');
 const State             = require('./lib/state');
-
+const DIRECTION = {
+    LEFT: 'left',
+    RIGHT: 'right',
+    UP: 'up',
+    DOWN: 'down'
+};
 class Box {
     constructor(box) {
         this.version = '2.9.3';
         this.stage = this.extractProperties(box.parent());
+        this.direction = null;
         this.box = this.extractProperties(box);
         this.pages = this.extractBulkProperties(box.children());
+        this.tools = {
+            transformationString: (c) => {
+                if (!c) {
+                    if (!c.x || !c.y || !c.z) {
+                        throw Error("coordinates x,y,z not found. wrong entry");
+                    }
+                }
+                return `rotateX(${c.x}deg) rotateY(${c.y}deg) translateZ(${c.z}vw)`;
+            },
+            loop: (states) => {
+                const executedTransformations = {};
+                for (const page in states) {
+                    if (states.hasOwnProperty(page)) {
+                        const coordinates = states[page].transitions[this.direction];
+                        if (typeof coordinates.stateCallback == 'function') {
+                            coordinates.stateCallback()
+                        }
+                        const transformationString = this.tools.transformationString(coordinates);
+                        this.pages[page].dom.css('transform', transformationString);
+                        executedTransformations[page] = transformationString;
+                    }
+                }
+                return executedTransformations;
+            }
+        };
+        this.spin = {
+            left: (states) => {
+                this.direction = DIRECTION.LEFT;
+                return this.tools.loop(states);
+            },
+            right: (states) => {
+                this.direction = DIRECTION.RIGHT;
+                return this.tools.loop(states);
+            },
+            up: (states) => {
+                this.direction = DIRECTION.UP;
+                return this.tools.loop(states);
+            },
+            down: (states) => {
+                this.direction = DIRECTION.DOWN;
+                return this.tools.loop(states);
+            },
+
+        };
     }
     extractProperties(data) {
         const name = data.data('alignment');
@@ -35,39 +85,38 @@ class Box {
         }
         return result;
     }
-    spinLeft(transitions) {
-
-        for (const page in transitions) {
-
-            // this.pages[page].dom.css('transform', transitions[page]);
-            // console.log();
-        }
-    }
 }
 
 class BoxBuilder {
     constructor(options) {
         const BOX = new Box($(options.box));
-        let PageGenerator = new Transition();
+        this.PageGenerator = new Transition();
         let states = {
-            front: new State(Constants.SERVICE.page.front, State.TYPE.INITIAL, PageGenerator.next()),
-            left: new State(Constants.SERVICE.page.left, State.TYPE.INITIAL, PageGenerator.next()),
-            right : new State(Constants.SERVICE.page.right, State.TYPE.INITIAL, PageGenerator.next()),
-            back: new State(Constants.SERVICE.page.back, State.TYPE.INITIAL, PageGenerator.next()),
-            top: new State(Constants.SERVICE.page.top, State.TYPE.INITIAL, PageGenerator.next()),
-            bottom: new State(Constants.SERVICE.page.bottom, State.TYPE.INITIAL, PageGenerator.next())
+            front: new State(this.createStateParam(Constants.PAGES.front)),
+            left: new State(this.createStateParam(Constants.PAGES.left)),
+            right : new State(this.createStateParam(Constants.PAGES.right)),
+            back: new State(this.createStateParam(Constants.PAGES.back)),
+            top: new State(this.createStateParam(Constants.PAGES.top)),
+            bottom: new State(this.createStateParam(Constants.PAGES.bottom))
         };
         let transitions = {
-            front: states.front.getTransition(),
-            left: states.left.getTransition(),
-            right : states.right.getTransition(),
-            back: states.back.getTransition(),
-            top: states.top.getTransition(),
-            bottom: states.bottom.getTransition()
+            front: states.front.getTransitions(),
+            left: states.left.getTransitions(),
+            right : states.right.getTransitions(),
+            back: states.back.getTransitions(),
+            top: states.top.getTransitions(),
+            bottom: states.bottom.getTransitions()
         };
         const eventDispatcher = new EventDispatcher();
         const PageStateMachine = new StateMachine(BOX, states, transitions, eventDispatcher);
-        console.log(PageStateMachine)
+    }
+    createStateParam(name) {
+        return {
+            name: Constants.PAGES[name],
+            serviceName: Constants.SERVICE.page[name],
+            type: State.TYPE.INITIAL,
+            transitions: this.PageGenerator.next()
+        }
     }
 }
 

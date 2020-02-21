@@ -24,6 +24,7 @@ class EventDispatcher {
             throw Error("callback is uncallable");
         }
         this._events[id].callback();
+        return true;
     }
     removeListener(id) {
         if (!this._events[id]) {

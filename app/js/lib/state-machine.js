@@ -1,46 +1,31 @@
-const Cache = require('./cache');
-const CONSTANTS = require('./constants');
-const EventDispatcher = require('./event-dispatcher');
-
 const ACTION = {
     SPIN: {
         LEFT: 'spin.left',
         RIGHT: 'spin.right',
         UP: 'spin.up',
         DOWN: 'spin.down'
-    }
+    },
 };
 
-class AbstractStateMachine {
+class StateMachine {
     constructor(object, states, transitions, eventDispatcher) {
-        this.cache = new Cache();
         this.object = object;
         this.states = states;
         this.transitions = transitions;
-        this.eventDispatcher = new EventDispatcher();
+        this.eventDispatcher = eventDispatcher;
+        console.log(states)
 
-
-    }
-}
-
-class StateMachine extends AbstractStateMachine {
-    constructor(object, states, transitions, eventDispatcher) {
-        super(object, states, transitions, eventDispatcher)
-
+        // this.createEvent()
         this.eventDispatcher.addListner(ACTION.SPIN.LEFT, () => {
-            console.log(this.transitions[CONSTANTS.PAGES.front])
-            const oldCoords = object.spinLeft();
-        });
-        const prevEventDataId = this.cache.insert({
-            name: ACTION.SPIN.LEFT,
-            state: states,
-            object: object,
-            states: states,
-            transitions: transitions
+            object.spin.left(this.states);
         });
         this.eventDispatcher.eventAction(ACTION.SPIN.LEFT);
-        // this.
-        // console.log()
+    }
+    createEvent(name, callback) {
+        return this.eventDispatcher.addListener(name, callback);
+    }
+    triggerEvent(name) {
+        this.eventDispatcher.eventAction(name);
     }
 }
 
