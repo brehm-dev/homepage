@@ -12,8 +12,8 @@ const DIRECTION = {
 class Box {
     constructor(box) {
         this.version = '2.9.3';
-        this.stage = this.extractProperties(box.parent());
         this.direction = null;
+        this.stage = this.extractProperties(box.parent());
         this.box = this.extractProperties(box);
         this.pages = this.extractBulkProperties(box.children());
         this.tools = {
@@ -31,7 +31,7 @@ class Box {
                     if (states.hasOwnProperty(page)) {
                         const coordinates = states[page].transitions[this.direction];
                         if (typeof coordinates.stateCallback == 'function') {
-                            coordinates.stateCallback()
+                            coordinates.stateCallback(this.direction)
                         }
                         const transformationString = this.tools.transformationString(coordinates);
                         this.pages[page].dom.css('transform', transformationString);
@@ -60,6 +60,7 @@ class Box {
             },
 
         };
+        console.log(this)
     }
     extractProperties(data) {
         const name = data.data('alignment');
@@ -84,6 +85,23 @@ class Box {
             }
         }
         return result;
+    }
+    initialize() {
+        const snapShot = $(window);
+        const windowSize = {
+            x: snapShot.width(),
+            y: snapShot.height(),
+            z: snapShot.width()
+        };
+        this.stage.dom.css({
+            width: windowSize.x,
+            height: windowSize.y,
+            perspective: windowSize.x
+        });
+        this.box.dom.css('transform', `translateZ(-${snapShot.x/2}px)`);
+        for (const page in this.pages) {
+            this.pages[page].dom.css()
+        }
     }
 }
 
@@ -114,7 +132,6 @@ class BoxBuilder {
         return {
             name: Constants.PAGES[name],
             serviceName: Constants.SERVICE.page[name],
-            type: State.TYPE.INITIAL,
             transitions: this.PageGenerator.next()
         }
     }

@@ -14,16 +14,16 @@
     height: 100vh
     perspective: 100vw
     .box
-        position: relative
+        position: absolute
         width: 100%
         height: 100%
         transform-style: preserve-3d
         transform: translateZ(-100vw)
         .page
-            position: absolute
+            //position: absolute
             width: 100vw
             height: 100vh
-            overflow: hidden
+            overflow: auto
         .page.front
             +box-transform(rotateY(0deg) translateZ(100vw))
             background: rgba(46, 255, 32, 0.49)

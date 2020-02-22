@@ -13,13 +13,14 @@ class StateMachine {
         this.states = states;
         this.transitions = transitions;
         this.eventDispatcher = eventDispatcher;
-        console.log(states)
-
         // this.createEvent()
+        console.log(this)
+
+        console.log(states)
         this.eventDispatcher.addListner(ACTION.SPIN.LEFT, () => {
             object.spin.left(this.states);
         });
-        this.eventDispatcher.eventAction(ACTION.SPIN.LEFT);
+        // this.eventDispatcher.eventAction(ACTION.SPIN.LEFT);
     }
     createEvent(name, callback) {
         return this.eventDispatcher.addListener(name, callback);
