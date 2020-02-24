@@ -23,6 +23,7 @@ class EventDispatcher {
         if (!this._events[id].callback) {
             throw Error("callback is uncallable");
         }
+        console.log(this)
         this._events[id].callback();
         return true;
     }

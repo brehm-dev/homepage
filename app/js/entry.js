@@ -6,7 +6,8 @@ import 'fonts/bebas-neue/BebasNeue-Regular.woff';
 
 
 
-let Box = new BoxBuilder({
+const Box = new BoxBuilder({
     box: 'main.box',
     alignment: "alignment",
 });
+window.Box = Box;

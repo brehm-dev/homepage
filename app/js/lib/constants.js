@@ -1,5 +1,5 @@
 const COLLECTION = {
-    PAGES: {
+    PAGE: {
         front: 'front',
         left: 'left',
         right: 'right',
@@ -8,43 +8,34 @@ const COLLECTION = {
         bottom: 'bottom'
     },
     SERVICE: {
-        stage: 'stage',
-        box: 'stage.box',
-        page: {
-            front: 'stage.box.page.front',
-            left: 'stage.box.page.left',
-            right: 'stage.box.page.right',
-            back: 'stage.box.page.back',
-            top: 'stage.box.page.top',
-            bottom: 'stage.box.page.bottom'
+        front: 'stage.box.page.front',
+        left: 'stage.box.page.left',
+        right: 'stage.box.page.right',
+        back: 'stage.box.page.back',
+        top: 'stage.box.page.top',
+        bottom: 'stage.box.page.bottom'
+    },
+    ACTION: {
+        SPIN: {
+            LEFT: 'left',
+            RIGHT: 'right',
+            UP: 'up',
+            DOWN: 'down'
         }
     },
-
-    SLUG: {
-        PAGES: 'pages',
-        BOX: 'box',
-        STAGE: 'stage',
-    },
-    TOKEN: {
-        stage: 'stage',
-        box: 'box',
-        front: 'front',
-        left: 'left',
-        right: 'right',
-        back: 'back',
-        top: 'top',
-        bottom: 'bottom'
-    },
-    STATE: {
-        // all box items were encountered
-        INITIALIZED: 'initialized',
-        STARTED: 'started'
+    ORIGIN: {
+        front:  { x:   0,   y:      0, z: 50 },
+        left:   { x:   0,   y:    -90, z: 50 },
+        right:  { x:   0,   y:     90, z: 50 },
+        back:   { x:   0,   y:    180, z: 50 },
+        top:    { x:  90,   y:      0, z: 50 },
+        bottom: { x: -90,   y:      0, z: 50 }
     }
 };
 
 class Constants {
-    static get PAGES() {
-        return COLLECTION.PAGES;
+    static get PAGE() {
+        return COLLECTION.PAGE;
     }
     static get ACTION() {
         return COLLECTION.ACTION;
@@ -52,17 +43,21 @@ class Constants {
     static get SERVICE() {
         return COLLECTION.SERVICE;
     }
+    static get ORIGIN() {
+        return COLLECTION.ORIGIN;
+    }
+
 
     static get interator() {
         return {
             index: 0,
             data: {
-                0: COLLECTION.PAGES.front,
-                1: COLLECTION.PAGES.left,
-                2: COLLECTION.PAGES.right,
-                3: COLLECTION.PAGES.back,
-                4: COLLECTION.PAGES.top,
-                5: COLLECTION.PAGES.bottom
+                0: COLLECTION.PAGE.front,
+                1: COLLECTION.PAGE.left,
+                2: COLLECTION.PAGE.right,
+                3: COLLECTION.PAGE.back,
+                4: COLLECTION.PAGE.top,
+                5: COLLECTION.PAGE.bottom
             },
             [Symbol.iterator]() {
                 this.current = this.data[this.index];
