@@ -9,17 +9,18 @@ const ACTION = {
     RIGHT:  'spin.right',
     UP:     'spin.up',
     DOWN:   'spin.down'
-}
+};
 
 class Transition {
     constructor() {
+        const z = $(window).width()/2;
         this.origin = {
-            front:  { x:   0,   y:      0, z: 50 },
-            left:   { x:   0,   y:    -90, z: 50 },
-            right:  { x:   0,   y:     90, z: 50 },
-            back:   { x:   0,   y:    180, z: 50 },
-            top:    { x:  90,   y:      0, z: 50 },
-            bottom: { x: -90,   y:      0, z: 50 }
+            front:  { x:   0,   y:      0, z: z },
+            left:   { x:   0,   y:    -90, z: z },
+            right:  { x:   0,   y:     90, z: z },
+            back:   { x:   0,   y:    180, z: z },
+            top:    { x:  90,   y:      0, z: z },
+            bottom: { x: -90,   y:      0, z: z }
         };
         this.tools = {
             add(val) {
@@ -58,7 +59,7 @@ class Transition {
             },
             get(direction, coordinate) {
                 if (!coordinate) {
-                    const coordinate = this.origin[direction];
+                    coordinate = this.origin[direction];
                 }
                 return this[direction](coordinate);
             }
@@ -126,9 +127,21 @@ class Box {
         this.history.push(executedCoordinates);
     }
     spinLeft() {
+        this.spin(ACTION.LEFT);
+    }
+    spinRight() {
+        this.spin(ACTION.RIGHT);
+    }
+    spinUp() {
+        this.spin(ACTION.UP);
+    }
+    spinDown() {
+        this.spin(ACTION.DOWN);
+    }
+    spin(direction) {
         const executedCoordinates = {};
         for (const page in this.Pages) {
-            const coordinate = this.Transitor.get.left(this.history[this.history.length][page]);
+            const coordinate = this.Transitor.get[direction](this.history[this.history.length -1][page]);
             this.Pages[page].css('transform', this.Transitor.get.transformationString(coordinate));
             executedCoordinates[page] = coordinate;
         }
