@@ -1,8 +1,8 @@
-const TransitionFactory     = require('./lib/transition-factory');
-const EventDispatcher       = require('./lib/event-dispatcher');
-const StateMachine          = require('./lib/state-machine');
-const StateFactory          = require('./lib/state-factory');
-const Box                   = require('./lib/box');
+const TransitionFactory     = require('../../../StateMachine/lib/transition-factory');
+const EventDispatcher       = require('../../../StateMachine/lib/event-dispatcher');
+const StateMachine          = require('../../../StateMachine/lib/state-machine');
+const StateFactory          = require('../../../StateMachine/lib/state-factory');
+const Box                   = require('../../../StateMachine/lib/box');
 
 class BoxBuilder {
     constructor(options) {
