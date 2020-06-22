@@ -31,12 +31,7 @@ app.use('/', function (req, res) {
     };
     let uAgent = req.headers['user-agent'];
 
-    if (uAgent.match(/[a-zA-z]+(ablet)/g) || uAgent.match(/[a-zA-z]+(obile)/g)) {
-        isMobile = true;
-
-    } else {
-        isMobile = false;
-    }
+    isMobile = !!(uAgent.match(/[a-zA-z]+(ablet)/g) || uAgent.match(/[a-zA-z]+(obile)/g));
     res.render('index.html.twig', {
         whatsappLink: whatsapp.generate(isMobile),
         thisYear: dateNow.getFullYear()
