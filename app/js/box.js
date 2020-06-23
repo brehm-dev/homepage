@@ -93,8 +93,43 @@ class Transition {
     }
 }
 
+class Detector {
+    constructor(value) {
+        if (!$) console.log("jquery is not ready")
+        this.value = $(value)
+    }
+}
+
+
+class ScreenDetector extends Detector {
+    constructor() {
+        super(window)
+        const $window = this.value;
+        $window.on('resize', (event) => {
+            console.log(event)
+        });
+        this.ranges = {
+            width: $window.width(),
+            height: $window.height(),
+
+        }
+        // console.log(this)
+    }
+    static screenInformation(obj) {
+        if (!$) throw Error('require jquery');
+        console.log(obj)
+        return {
+            width: obj.width(),
+            height: obj.height(),
+
+        }
+    }
+}
+
 class Box {
     constructor(box) {
+        const screenDetector = new ScreenDetector();
+        ScreenDetector.screenInformation(box)
         this.Box = box;
         this.Stage = this.Box.parent();
         this.Pages = this.extractPagesProperties(this.Box.children());

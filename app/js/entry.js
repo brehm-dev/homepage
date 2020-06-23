@@ -1,9 +1,13 @@
 const $ = require('jquery');
 window.$ = $;
-const Box = require('./box');
-
 import 'app/sass/style.sass';
-// import 'fonts/bebas-neue/BebasNeue-Regular.woff';
-
+const Box = require('./box');
+const StateMachine = require('./state-machine/state-machine');
+const StateController = require('./state-machine/state-controller');
 const box = new Box($('main.box'));
+// const BoxStateMachine = new StateMachine(
+//     box,
+//     new StateController(),
+//
+// );
 window.Box = box;

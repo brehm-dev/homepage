@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/andreasbrehm/one-pager.git"
+    "url": "git+ssh://git@github.com:brehm-dev/homepage.git"
   },
   "keywords": [
     "cardsite",
@@ -22,6 +22,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/andreasbrehm/one-pager#readme",
   "dependencies": {
+    "StateMachine": "ssh://git@github.com:brehm-dev/StateMachine.git",
     "express": "^4.16.2",
     "twig": "^1.14.0"
   },
