@@ -12,7 +12,6 @@ window.$ = require('jquery');
 import 'app/sass/style.sass';
 const Box = require('./box/box');
 const StateMachine = require('./state-machine/state-machine');
-const StateController = require('./state-machine/state-controller');
 const settings = require('./settings');
 const box = new Box($('main.box'));
 box.injectSettings(settings)
