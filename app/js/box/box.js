@@ -11,6 +11,8 @@ const ACTION = {
     DOWN:   'spin.down'
 };
 
+const Calibrator = require('./calibrator');
+
 class Transition {
     constructor() {
         const z = $(window).width()/2;
@@ -113,11 +115,9 @@ class ScreenDetector extends Detector {
             height: $window.height(),
 
         }
-        // console.log(this)
     }
     static screenInformation(obj) {
         if (!$) throw Error('require jquery');
-        console.log(obj)
         return {
             width: obj.width(),
             height: obj.height(),
@@ -130,12 +130,27 @@ class Box {
     constructor(box) {
         const screenDetector = new ScreenDetector();
         ScreenDetector.screenInformation(box)
+
+        // console.log(Math.floor(Math.random() * 1000))
         this.Box = box;
+        // console.log(box.css('perspective') === 'none')
         this.Stage = this.Box.parent();
         this.Pages = this.extractPagesProperties(this.Box.children());
         this.Transitor = new Transition();
         this.history = [];
         this.optimizeResolution()
+        this.Box.on("StartUp", (event) => {
+            // console.log(arguments)
+        })
+    }
+    injectSettings(settings) {
+        this.calibrator = new Calibrator(settings);
+    }
+    triggerBox() {
+        this.Box.trigger('StartUp');
+    }
+    bindEvents() {
+        this.Box.on()
     }
     optimizeResolution() {
         const $w = $(window);

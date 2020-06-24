@@ -1,6 +1,6 @@
-class Siblings {
-    constructor() {
-        this.siblings = {
+class Settings {
+    static get siblings() {
+        return {
             front: {
                 left:   'left',
                 right:  'right',
