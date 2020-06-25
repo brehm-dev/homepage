@@ -1,60 +1,92 @@
 const Calibrator = require('./calibrator');
 const TransitionCacher = require('../state-machine/transition-cacher')
 class Box {
-    constructor(box) {
-        this.calibrator = new Calibrator()
+    constructor() {
+        this.Calibrator = new Calibrator()
         this.Cacher = new TransitionCacher(this.getDatabaseSchema())
-
-        // console.log(Math.floor(Math.random() * 1000))
-        // this.Pages = this.extractPagesProperties(this.Box.children());
-        // this.Box.on("StartUp", (event) => {
-        //     console.log(arguments)
-        // })
     }
     initialize() {
-        this.config = this.calibrator.getConfig()
-        const TAG = this.calibrator.getTags()
+        this.config = this.Calibrator.getConfig()
+        const TAG = this.Calibrator.getTags()
+        this.Elements = {}
         const identify = (tag) => {
             const el = $(document).find('[data-identity="' + tag + '"');
             if (el === undefined) return false;
             return el;
         }
-        this.elements = {
-            stage: {
-                dom: identify(TAG.STAGE),
-                config: this.config[TAG.STAGE]
-            },
-            box: {
-                dom: identify(TAG.BOX),
-                config: this.config[TAG.BOX]
-            },
-            pages: {}
-        }
-        for (const c in TAG.PAGES) {
-            this.elements.pages[c] = {
-                dom: identify(c),
-                config: this.config[c],
-                transitions: this.calibrator.calculateTransition(this.config[c])
+
+        for (const T in TAG.ELEMENTS) {
+            const tag = TAG.ELEMENTS[T]
+            this.Elements[tag] = {
+                dom: identify(tag),
+                config: this.config[tag]
             }
-            this.Cacher.insert(c, this.elements.pages[c])
-        }
-        for (const el in this.elements) {
-            if (this.elements[el].dom === undefined) {
-                for (const page in this.elements[el]) {
-                    this.executeStyle(this.elements[el][page].dom, this.elements[el][page].config.style)
-                    // console.log()
-                }
-            } else {
-                this.executeStyle(this.elements[el].dom, this.elements[el].config.style);
+            if (tag !== TAG.ELEMENTS.BOX && tag !== TAG.ELEMENTS.STAGE) {
+                this.Elements[tag].transitions = this.Calibrator.calculateTransition(this.config[tag])
             }
+            this.executeStyle(this.Elements[tag])
         }
-        console.log(this)
     }
 
-    executeStyle(obj, style) {
-        if (obj !== undefined && typeof style === "object") {
-            obj.css(style)
+    updateResolution() {
+        const R = {
+            width: $(window).width(),
+            height: $(window).height()
         }
+        const SG = this.Calibrator.StringGenerator
+        for (const tag in this.Elements) {
+            if (tag === this.Calibrator.TAGS.ELEMENTS.STAGE) {
+                this.Elements[tag].config.style = {
+                    width: R.width,
+                    height: R.height,
+                    perspective: R.width
+                }
+                this.executeStyle(this.Elements[tag])
+                continue
+            }
+            if (tag === this.Calibrator.TAGS.ELEMENTS.BOX) {
+                this.Elements[tag].config.coordinates.range = -(R.width/2)
+                this.Elements[tag].config.style = {
+                    width: R.width,
+                    height: R.height,
+                    transform: SG.generate(this.Elements[tag].config.coordinates)
+                }
+                this.executeStyle(this.Elements[tag])
+                continue
+            }
+
+            console.log(tag, this.Elements[tag])
+            this.Elements[tag].config.coordinates.Z = {
+                action: this.Elements[tag].config.coordinates.Z.action,
+                range: R.width/2,
+                unit: this.Elements[tag].config.coordinates.Z.unit
+            }
+            if (tag === this.Calibrator.TAGS.ELEMENTS.BOTTOM) {
+                // this.Elements[tag].config.coordinates.Z.range = (R.width - 87)
+            }
+            if (tag === this.Calibrator.TAGS.ELEMENTS.TOP || tag === this.Calibrator.TAGS.ELEMENTS.BOTTOM) {
+                this.Elements[tag].config.style = {
+                    width: R.width,
+                    height: R.width,
+                    transform: SG.chain(this.Elements[tag].config.coordinates)
+                }
+                this.executeStyle(this.Elements[tag])
+                continue
+            }
+            this.Elements[tag].config.style = {
+                width: R.width,
+                height: R.height,
+                transform: SG.chain(this.Elements[tag].config.coordinates)
+            }
+            this.executeStyle(this.Elements[tag])
+        }
+    }
+
+    executeStyle(element) {
+        if (typeof element === "object") {
+            element.dom.css(element.config.style)
+        }
+        return false
     }
 
     getDatabaseSchema() {
@@ -67,26 +99,6 @@ class Box {
             bottom: []
         }
     }
-
-    // spin(direction) {
-    //     const executedCoordinates = {};
-    //     for (const page in this.Pages) {
-    //         const coordinate = this.Transitor.get[direction](this.history[this.history.length -1][page]);
-    //         this.Pages[page].css('transform', this.Transitor.get.transformationString(coordinate));
-    //         executedCoordinates[page] = coordinate;
-    //     }
-    //     this.history.push(executedCoordinates);
-    // }
-    // extractPagesProperties(pages) {
-    //     const extractedProperties = {};
-    //     for (let i = 0; i <= pages.length; i++) {
-    //         if (pages[i] !== undefined) {
-    //             const page = $(pages[i]);
-    //             extractedProperties[page.data('identity')] = page;
-    //         }
-    //     }
-    //     return extractedProperties;
-    // }
 }
 
 module.exports = Box;

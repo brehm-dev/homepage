@@ -26,185 +26,185 @@ class TransformStringGenerator {
 class Calibrator {
     constructor() {
         const $window = $(window);
-        const windowWidth = $window.width();
-        const windowHeight = $window.height();
         this.StringGenerator = new TransformStringGenerator();
         this.TAGS = {
-            X: 'X',
-            Y: 'Y',
-            Z: 'Z',
-            TRANSLATE: 'translate',
-            ROTATE: 'rotate',
-            ROTATE_X: 'rotateX',
-            ROTATE_Y: 'rotateY',
-            TRANSLATE_Z: 'translateZ',
-            PX: 'px',
-            DEG: 'deg',
-            STAGE: 'stage',
-            BOX: 'box',
-            PAGES: {
-                front: 'front',
-                left: 'left',
-                right: 'right',
-                back: 'back',
-                top: 'top',
-                bottom: 'bottom'
+            ACTION: {
+                ROTATE_X: 'rotateX',
+                ROTATE_Y: 'rotateY',
+                TRANSLATE_Z: 'translateZ'
+            },
+            UNIT: {
+                PX: 'px',
+                DEG: 'deg'
+            },
+            ELEMENTS: {
+                STAGE: 'stage',
+                BOX: 'box',
+                FRONT: 'front',
+                LEFT: 'left',
+                RIGHT: 'right',
+                BACK: 'back',
+                TOP: 'top',
+                BOTTOM: 'bottom'
             }
         }
-        this.configuration = {
+        this.configuration = this.getOriginConfigurations($window.width(), $window.height())
+    }
+    getOriginConfigurations(width, height) {
+        return {
             stage: {
                 style: {
-                    // width: windowWidth,
-                    // height: windowHeight,
-                    perspective: windowWidth
+                    width: width,
+                    height: height,
+                    perspective: width
                 }
             },
             box: {
                 style: {
-                    width: '100vw',
-                    height: '100vh'
+                    width: width,
+                    height: height,
                 },
                 coordinates: {
-                    action: this.TAGS.TRANSLATE_Z,
-                    range: -windowWidth/2,
-                    unit: this.TAGS.PX
+                    action: this.TAGS.ACTION.TRANSLATE_Z,
+                    range: -width/2,
+                    unit: this.TAGS.UNIT.PX
                 }
             },
             front: {
                 style: {
-                    width: windowWidth,
-                    height: windowHeight
+                    width: width,
+                    height: height
                 },
                 coordinates: {
                     X: {
-                        action: this.TAGS.ROTATE_X,
+                        action: this.TAGS.ACTION.ROTATE_X,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Y: {
-                        action: this.TAGS.ROTATE_Y,
+                        action: this.TAGS.ACTION.ROTATE_Y,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Z: {
-                        action: this.TAGS.TRANSLATE_Z,
-                        range: windowWidth/2,
-                        unit: this.TAGS.PX
+                        action: this.TAGS.ACTION.TRANSLATE_Z,
+                        range: width/2,
+                        unit: this.TAGS.UNIT.PX
                     }
                 }
             },
             left: {
                 style: {
-                    width: windowWidth,
-                    height: windowHeight
+                    width: width,
+                    height: height
                 },
                 coordinates: {
                     X: {
-                        action: this.TAGS.ROTATE_X,
+                        action: this.TAGS.ACTION.ROTATE_X,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Y: {
-                        action: this.TAGS.ROTATE_Y,
+                        action: this.TAGS.ACTION.ROTATE_Y,
                         range: -90,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Z: {
-                        action: this.TAGS.TRANSLATE_Z,
-                        range: windowWidth/2,
-                        unit: this.TAGS.PX
+                        action: this.TAGS.ACTION.TRANSLATE_Z,
+                        range: width/2,
+                        unit: this.TAGS.UNIT.PX
                     }
                 }
             },
             right: {
                 style: {
-                    width: windowWidth,
-                    height: windowHeight
+                    width: width,
+                    height: height
                 },
                 coordinates: {
                     X: {
-                        action: this.TAGS.ROTATE_X,
+                        action: this.TAGS.ACTION.ROTATE_X,
                         range: 0,
                         unit: this.TAGS.DEG
                     },
                     Y: {
-                        action: this.TAGS.ROTATE_Y,
+                        action: this.TAGS.ACTION.ROTATE_Y,
                         range: 90,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Z: {
-                        action: this.TAGS.TRANSLATE_Z,
-                        range: windowWidth/2,
-                        unit: this.TAGS.PX
+                        action: this.TAGS.ACTION.TRANSLATE_Z,
+                        range: width/2,
+                        unit: this.TAGS.UNIT.PX
                     }
                 }
             },
             back: {
                 style: {
-                    width: windowWidth,
-                    height: windowHeight
+                    width: width,
+                    height: height
                 },
                 coordinates: {
                     X: {
-                        action: this.TAGS.ROTATE_X,
+                        action: this.TAGS.ACTION.ROTATE_X,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Y: {
-                        action: this.TAGS.ROTATE_Y,
+                        action: this.TAGS.ACTION.ROTATE_Y,
                         range: 180,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Z: {
-                        action: this.TAGS.TRANSLATE_Z,
-                        range: windowWidth/2,
-                        unit: this.TAGS.PX
+                        action: this.TAGS.ACTION.TRANSLATE_Z,
+                        range: width/2,
+                        unit: this.TAGS.UNIT.PX
                     }
                 }
             },
             top: {
                 style: {
-                    width: windowWidth,
-                    height: windowWidth
+                    width: width,
+                    height: width
                 },
                 coordinates: {
                     X: {
-                        action: this.TAGS.ROTATE_X,
+                        action: this.TAGS.ACTION.ROTATE_X,
                         range: 90,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Y: {
-                        action: this.TAGS.ROTATE_Y,
+                        action: this.TAGS.ACTION.ROTATE_Y,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Z: {
-                        action: this.TAGS.TRANSLATE_Z,
-                        range: windowWidth/2,
-                        unit: this.TAGS.PX
+                        action: this.TAGS.ACTION.TRANSLATE_Z,
+                        range: width/2,
+                        unit: this.TAGS.UNIT.PX
                     }
                 }
             },
             bottom: {
                 style: {
-                    width: windowWidth,
-                    height: windowWidth
+                    width: width,
+                    height: width
                 },
                 coordinates: {
                     X: {
-                        action: this.TAGS.ROTATE_X,
+                        action: this.TAGS.ACTION.ROTATE_X,
                         range: -90,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Y: {
-                        action: this.TAGS.ROTATE_Y,
+                        action: this.TAGS.ACTION.ROTATE_Y,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Z: {
-                        action: this.TAGS.TRANSLATE_Z,
-                        range: windowWidth,
-                        unit: this.TAGS.PX
+                        action: this.TAGS.ACTION.TRANSLATE_Z,
+                        range: width/2,
+                        unit: this.TAGS.UNIT.PX
                     }
                 }
             }
@@ -263,13 +263,6 @@ class Calibrator {
                     z: element.coordinates.Z
                 }
             }
-        }
-    }
-    checkWindowRange() {
-        const w = $(window);
-        return {
-            width: w.width(),
-            height: w.height()
         }
     }
 }
