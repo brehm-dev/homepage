@@ -1,15 +1,8 @@
-const Cacher = require('./cacher');
-
 class StateMachine {
-    constructor(object, stateController) {
+    constructor(object) {
         this.object = object || {}
-        this.stateController = stateController
-        this.Cacher = new Cacher();
-        // console.log(object.Stage)
+        this.object.initialize()
 
-        window.addEventListener('spin.left', (event) => {
-            console.log(event)
-        })
     }
 
 }
