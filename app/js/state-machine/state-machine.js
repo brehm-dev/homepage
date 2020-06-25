@@ -2,7 +2,10 @@ class StateMachine {
     constructor(object) {
         this.object = object || {}
         this.object.initialize()
-        this.object.updateResolution()
+
+        $(window).on('resize', (event) => {
+            this.object.updateResolution()
+        })
 
     }
 
