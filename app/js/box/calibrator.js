@@ -4,27 +4,60 @@
 class TransformStringGenerator {
     constructor() {}
     generate(obj) {
-        // console.log(obj)
         if (
             typeof obj === "object" &&
             obj.action !== undefined &&
             obj.range !== undefined &&
             obj.unit !== undefined
         ) {
-            const str = `${obj.action}(${obj.range}${obj.unit})`
-            // console.log(str)
-            return str
+            return `${obj.action}(${obj.range}${obj.unit})`
         }
-        // return false
+        return false
     }
     chain(bunch) {
         let bag = []
-        // console.log(bunch)
         for (const b in bunch) {
             bag.push(this.generate(bunch[b]))
         }
-        // console.log(bag)
         return bag.join(' ')
+    }
+}
+
+const TAGS = {
+    DIRECTION: {
+        LEFT:           'left',
+        RIGHT:          'right',
+        UP:             'up',
+        DOWN:           'down'
+    },
+    STATES: {
+        INITIALIZED:    'initialized',
+        IDLE:           'idle',
+        MOVE: {
+            LEFT:       'moved.left',
+            RIGHT:      'moved.right',
+            UP:         'moved.up',
+            DOWN:       'moved.down'
+        }
+    },
+    ACTION: {
+        ROTATE_X:       'rotateX',
+        ROTATE_Y:       'rotateY',
+        TRANSLATE_Z:    'translateZ'
+    },
+    UNIT: {
+        PX:             'px',
+        DEG:            'deg'
+    },
+    ELEMENTS: {
+        STAGE:          'stage',
+        BOX:            'box',
+        FRONT:          'front',
+        LEFT:           'left',
+        RIGHT:          'right',
+        BACK:           'back',
+        TOP:            'top',
+        BOTTOM:         'bottom'
     }
 }
 
@@ -32,44 +65,7 @@ class Calibrator {
     constructor() {
         const $window = $(window);
         this.StringGenerator = this.getGeneratorInstance()
-        // TODO: die TAGS als Konstante außerhalb der Klasse ablegen
-        this.TAGS = {
-            DIRECTION: {
-                LEFT:           'left',
-                RIGHT:          'right',
-                UP:             'up',
-                DOWN:           'down'
-            },
-            STATES: {
-                INITIALIZED:    'initialized',
-                IDLE:           'idle',
-                MOVE: {
-                    LEFT:       'moved.left',
-                    RIGHT:      'moved.right',
-                    UP:         'moved.up',
-                    DOWN:       'moved.down'
-                }
-            },
-            ACTION: {
-                ROTATE_X:       'rotateX',
-                ROTATE_Y:       'rotateY',
-                TRANSLATE_Z:    'translateZ'
-            },
-            UNIT: {
-                PX:             'px',
-                DEG:            'deg'
-            },
-            ELEMENTS: {
-                STAGE:          'stage',
-                BOX:            'box',
-                FRONT:          'front',
-                LEFT:           'left',
-                RIGHT:          'right',
-                BACK:           'back',
-                TOP:            'top',
-                BOTTOM:         'bottom'
-            }
-        }
+        this.TAGS = TAGS
         this.configuration = this.getOriginConfigurations($window.width(), $window.height())
     }
     getGeneratorInstance() {
@@ -248,7 +244,7 @@ class Calibrator {
         }
     }
     calculateTransition(element) {
-        console.log(element)
+        // TODO: outsource function for recalculating coordinates
         element.style.transform = this.StringGenerator.chain(element.coordinates)
         return {
             left: {

@@ -1,13 +1,3 @@
-const CONST = {
-    EVENT: {
-        START_UP: "StartUp",
-        SPIN_LEFT: "SpinLeft",
-        SPIN_RIGHT: "SpinRight",
-        SPIN_UP: "SpinUp",
-        SPIN_DOWN: "SpinDown"
-    }
-};
-
 window.$ = require('jquery');
 import 'app/sass/style.sass';
 const Box = require('./box/box');

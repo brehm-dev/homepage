@@ -42,20 +42,14 @@ class Box {
 
     move(direction) {
         const StringGenerator = this.Calibrator.getGeneratorInstance();
-        // console.log(StringGenerator.chain())
         for (const tag in this.Elements) {
             if (this.pages.hasOwnProperty(tag)) {
-                // console.log(this.Elements[tag].config.coordinates)
                 this.Elements[tag].config.coordinates = this.Elements[tag].transitions[direction].coordinates
-                // console.log(this.Elements[tag].config.coordinates)
-                const str = StringGenerator.chain(this.Elements[tag].config.coordinates)
-                // console.log(str, this.Elements[tag].config.coordinates)
                 this.Elements[tag].config.style = {
                     width: this.Elements[tag].config.style.width,
                     height: this.Elements[tag].config.style.height,
-                    transform: str
+                    transform: StringGenerator.chain(this.Elements[tag].config.coordinates)
                 }
-                // console.log(this.Elements[tag])
                 this.Elements[tag].transitions = this.Calibrator.calculateTransition(this.Elements[tag].config)
                 this.executeStyle(this.Elements[tag])
             }

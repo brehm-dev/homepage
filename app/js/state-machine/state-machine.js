@@ -3,14 +3,16 @@ class StateMachine {
         this.object = object || {}
         this.object.initialize()
         const TAG = this.object.Calibrator.getTags();
+
         $(window).on('resize', (event) => {
             this.object.updateResolution()
         })
+
         $(window).on('keyup', (event) => {
             event.preventDefault()
+
             //Key: ArrowLeft - move:left
             if (event.originalEvent.keyCode === 37) {
-                // TODO: Hier sollen die Events gestartet werden.
                 this.object.move(TAG.DIRECTION.LEFT)
             }
             //Key: ArrowUp

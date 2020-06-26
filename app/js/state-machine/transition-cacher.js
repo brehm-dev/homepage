@@ -26,10 +26,7 @@ class TransitionsCacher extends Cacher {
             this.setValue(tag, {
                 timestamp: dateNow.toJSON(),
                 state: value.state,
-                content: {
-                    config: value.config,
-                    transitions: value.transitions
-                }
+                config: value.config
             })
             return this.storage[tag][(this.storage[tag].length - 1)]
         }
