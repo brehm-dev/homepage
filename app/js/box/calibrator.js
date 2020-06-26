@@ -4,52 +4,89 @@
 class TransformStringGenerator {
     constructor() {}
     generate(obj) {
+        // console.log(obj)
         if (
+            typeof obj === "object" &&
             obj.action !== undefined &&
             obj.range !== undefined &&
             obj.unit !== undefined
         ) {
-            return `${obj.action}(${obj.range}${obj.unit})`
+            const str = `${obj.action}(${obj.range}${obj.unit})`
+            // console.log(str)
+            return str
         }
-        return false
+        // return false
     }
     chain(bunch) {
         let bag = []
+        // console.log(bunch)
         for (const b in bunch) {
             bag.push(this.generate(bunch[b]))
         }
+        // console.log(bag)
         return bag.join(' ')
     }
 }
 
-
 class Calibrator {
     constructor() {
         const $window = $(window);
-        this.StringGenerator = new TransformStringGenerator();
+        this.StringGenerator = this.getGeneratorInstance()
+        // TODO: die TAGS als Konstante außerhalb der Klasse ablegen
         this.TAGS = {
+            DIRECTION: {
+                LEFT:           'left',
+                RIGHT:          'right',
+                UP:             'up',
+                DOWN:           'down'
+            },
+            STATES: {
+                INITIALIZED:    'initialized',
+                IDLE:           'idle',
+                MOVE: {
+                    LEFT:       'moved.left',
+                    RIGHT:      'moved.right',
+                    UP:         'moved.up',
+                    DOWN:       'moved.down'
+                }
+            },
             ACTION: {
-                ROTATE_X: 'rotateX',
-                ROTATE_Y: 'rotateY',
-                TRANSLATE_Z: 'translateZ'
+                ROTATE_X:       'rotateX',
+                ROTATE_Y:       'rotateY',
+                TRANSLATE_Z:    'translateZ'
             },
             UNIT: {
-                PX: 'px',
-                DEG: 'deg'
+                PX:             'px',
+                DEG:            'deg'
             },
             ELEMENTS: {
-                STAGE: 'stage',
-                BOX: 'box',
-                FRONT: 'front',
-                LEFT: 'left',
-                RIGHT: 'right',
-                BACK: 'back',
-                TOP: 'top',
-                BOTTOM: 'bottom'
+                STAGE:          'stage',
+                BOX:            'box',
+                FRONT:          'front',
+                LEFT:           'left',
+                RIGHT:          'right',
+                BACK:           'back',
+                TOP:            'top',
+                BOTTOM:         'bottom'
             }
         }
         this.configuration = this.getOriginConfigurations($window.width(), $window.height())
     }
+    getGeneratorInstance() {
+        if (this.StringGenerator === undefined) {
+            this.StringGenerator = new TransformStringGenerator()
+        }
+        return this.StringGenerator
+    }
+
+    getConfig() {
+        return this.configuration;
+    }
+
+    getTags() {
+        return this.TAGS;
+    }
+
     getOriginConfigurations(width, height) {
         return {
             stage: {
@@ -125,7 +162,7 @@ class Calibrator {
                     X: {
                         action: this.TAGS.ACTION.ROTATE_X,
                         range: 0,
-                        unit: this.TAGS.DEG
+                        unit: this.TAGS.UNIT.DEG
                     },
                     Y: {
                         action: this.TAGS.ACTION.ROTATE_Y,
@@ -210,57 +247,52 @@ class Calibrator {
             }
         }
     }
-    getConfig() {
-        return this.configuration;
-    }
-    getTags() {
-        return this.TAGS;
-    }
     calculateTransition(element) {
+        console.log(element)
         element.style.transform = this.StringGenerator.chain(element.coordinates)
         return {
             left: {
                 coordinates: {
-                    x: element.coordinates.X,
-                    y: {
+                    X: element.coordinates.X,
+                    Y: {
                         action: element.coordinates.Y.action,
                         range: (element.coordinates.Y.range + 90),
                         unit: element.coordinates.Y.unit
                     },
-                    z: element.coordinates.Z
+                    Z: element.coordinates.Z
                 }
             },
             right: {
                 coordinates: {
-                    x: element.coordinates.X,
-                    y: {
+                    X: element.coordinates.X,
+                    Y: {
                         action: element.coordinates.Y.action,
                         range: (element.coordinates.Y.range - 90),
                         unit: element.coordinates.Y.unit
                     },
-                    z: element.coordinates.Z
+                    Z: element.coordinates.Z
                 }
             },
             up: {
                 coordinates: {
-                    x: {
+                    X: {
                         action: element.coordinates.X.action,
                         range: (element.coordinates.X.range + 90),
                         unit: element.coordinates.X.unit
                     },
-                    y: element.coordinates.Y,
-                    z: element.coordinates.Z
+                    Y: element.coordinates.Y,
+                    Z: element.coordinates.Z
                 }
             },
             down: {
                 coordinates: {
-                    x: {
+                    X: {
                         action: element.coordinates.X.action,
                         range: (element.coordinates.X.range - 90),
                         unit: element.coordinates.X.unit
                     },
-                    y: element.coordinates.Y,
-                    z: element.coordinates.Z
+                    Y: element.coordinates.Y,
+                    Z: element.coordinates.Z
                 }
             }
         }
