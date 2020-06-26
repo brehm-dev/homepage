@@ -21,8 +21,19 @@ class TransitionsCacher extends Cacher {
         super(schema);
     }
     insert(tag, value) {
-        this.setValue(tag, value)
-        return this.storage[tag][(this.storage[tag].length - 1)]
+        if (this.storage.hasOwnProperty(tag)) {
+            const dateNow = new Date()
+            this.setValue(tag, {
+                timestamp: dateNow.toJSON(),
+                state: value.state,
+                content: {
+                    config: value.config,
+                    transitions: value.transitions
+                }
+            })
+            return this.storage[tag][(this.storage[tag].length - 1)]
+        }
+        return false;
     }
     select(tag) {
         return this.getValue(tag);
