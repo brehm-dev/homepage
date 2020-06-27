@@ -3,6 +3,7 @@
 *.codekit-cache/
 .sass-cache/
 node_modules/
+.scannerwork/
 app/pub/
 cgi-bin/
 tmp/
