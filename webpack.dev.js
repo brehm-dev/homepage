@@ -1,6 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 module.exports = {
     mode: "development",
     entry: "./app/js/entry.js",
@@ -87,9 +86,17 @@ module.exports = {
             app: path.resolve(__dirname, "app"),
         }
     },
-    plugins: [new HtmlWebpackPlugin({
-        filename: "index.html",
-        template: "app/views/index.twig.js"
-    })]
+    plugins: [
+        new BrowserSyncPlugin({
+            host: 'andreas.brehm.local',
+            port: 8888,
+            proxy: 'http://andreas.brehm.local/',
+            codeSync: true,
+            files: ['./*'],
+            injectChanges: true,
+            open: false,
+            notify: false
+        })
+    ]
 };
 

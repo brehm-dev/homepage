@@ -3,32 +3,39 @@ class StateMachine {
         this.object = object || {}
         this.object.initialize()
         const TAG = this.object.Calibrator.getTags();
-
-        $(window).on('resize', (event) => {
+        console.log(window)
+        window.addEventListener('resize', (event) => {
             this.object.updateResolution()
         })
+        if (!this.isTouchScreen()) {
+            window.addEventListener('keyup', (event) => {
+                event.preventDefault()
 
-        $(window).on('keyup', (event) => {
-            event.preventDefault()
+                //Key: ArrowLeft - move:left
+                if (event.keyCode === 37) {
+                    // console.log(this)
+                    this.object.move(TAG.DIRECTION.LEFT)
+                }
+                //Key: ArrowRight
+                if (event.keyCode === 39) {
+                    this.object.move(TAG.DIRECTION.RIGHT)
+                }
+            })
+        }
 
-            //Key: ArrowLeft - move:left
-            if (event.originalEvent.keyCode === 37) {
-                this.object.move(TAG.DIRECTION.LEFT)
-            }
-            //Key: ArrowUp
-            if (event.originalEvent.keyCode === 38) {
-                this.object.move(TAG.DIRECTION.UP)
-            }
-            //Key: ArrowRight
-            if (event.originalEvent.keyCode === 39) {
-                this.object.move(TAG.DIRECTION.RIGHT)
-            }
-            //Key: ArrowDown
-            if (event.originalEvent.keyCode === 40) {
-                this.object.move(TAG.DIRECTION.DOWN)
-            }
-        })
+
     }
+    isTouchScreen() {
+        try {
+            document.createEvent('TouchEvent')
+            return true
+        } catch (e) {
+            alert('no touch')
+            // console.error(e)
+            return false
+        }
+    }
+
 
 }
 

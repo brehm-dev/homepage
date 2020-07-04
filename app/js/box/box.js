@@ -1,5 +1,6 @@
 const Calibrator = require('./calibrator');
-const TransitionCacher = require('../state-machine/transition-cacher')
+const TransitionCacher = require('../state-machine/transition-cacher');
+const TouchDetector = require('../utils/touch-detector')
 class Box {
     constructor() {
         this.Calibrator = new Calibrator()
@@ -7,9 +8,13 @@ class Box {
         this.TAGS = this.Calibrator.getTags()
         this.pages = this.getDatabaseSchema();
 
+        const TD = new TouchDetector({
+            targetId: 'stage',
+            cb: (direction) => {
+                this.move(direction)
+            }
+        })
     }
-
-
 
     initialize() {
         this.config = this.Calibrator.getConfig()
@@ -17,7 +22,7 @@ class Box {
         this.Elements = {}
 
         const identify = (tag) => {
-            const el = $(document).find('[data-identity="' + tag + '"');
+            const el = document.querySelectorAll('[data-identity="' + tag + '"')[0]
             if (el === undefined) return false;
             return el;
         }
@@ -88,19 +93,6 @@ class Box {
                 range: R.width/2,
                 unit: this.Elements[tag].config.coordinates.Z.unit
             }
-            if (tag === this.Calibrator.TAGS.ELEMENTS.BOTTOM) {
-                // TODO: Den Abstand von Bottom korregieren
-                // this.Elements[tag].config.coordinates.Z.range = (R.width - 87)
-            }
-            if (tag === this.Calibrator.TAGS.ELEMENTS.TOP || tag === this.Calibrator.TAGS.ELEMENTS.BOTTOM) {
-                this.Elements[tag].config.style = {
-                    width: R.width,
-                    height: R.width,
-                    transform: SG.chain(this.Elements[tag].config.coordinates)
-                }
-                this.executeStyle(this.Elements[tag])
-                continue
-            }
             this.Elements[tag].config.style = {
                 width: R.width,
                 height: R.height,
@@ -111,10 +103,21 @@ class Box {
     }
 
     executeStyle(element) {
-        if (typeof element === "object") {
-            element.dom.css(element.config.style)
+        try {
+            if (typeof element === "object") {
+                for (const s in element.config.style) {
+                    if (element.config.style.hasOwnProperty(s)) {
+                        element.dom.style[s] = element.config.style[s];
+                    }
+                }
+            }
+        } catch (e) {
+            console.error(e)
+            return false
         }
-        return false
+
+
+
     }
 
     getDatabaseSchema() {
@@ -122,9 +125,7 @@ class Box {
             front:  [],
             left:   [],
             right:  [],
-            back:   [],
-            top:    [],
-            bottom: []
+            back:   []
         }
     }
 }

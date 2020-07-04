@@ -26,13 +26,13 @@
     "twig": "^1.14.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^3.4.2",
     "extract-loader": "^4.0.3",
     "file-loader": "^4.3.0",
-    "html-webpack-plugin": "^3.2.0",
-    "jquery": "^3.4.1",
-    "mocha": "^7.0.1",
     "node-sass": "^4.13.1",
+    "qunit": "^2.10.0",
     "sass-loader": "^8.0.2",
     "twig-loader": "^0.5.1",
     "webpack": "^4.41.6",
