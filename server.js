@@ -1,8 +1,6 @@
 let express = require('express');
 let app = express();
 
-
-
 app.set('view engine', 'twig');
 app.set('views', './app/views/');
 
