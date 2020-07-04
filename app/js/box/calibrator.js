@@ -26,9 +26,7 @@ class TransformStringGenerator {
 const TAGS = {
     DIRECTION: {
         LEFT:           'left',
-        RIGHT:          'right',
-        UP:             'up',
-        DOWN:           'down'
+        RIGHT:          'right'
     },
     STATES: {
         INITIALIZED:    'initialized',
@@ -55,18 +53,15 @@ const TAGS = {
         FRONT:          'front',
         LEFT:           'left',
         RIGHT:          'right',
-        BACK:           'back',
-        TOP:            'top',
-        BOTTOM:         'bottom'
+        BACK:           'back'
     }
 }
 
 class Calibrator {
     constructor() {
-        const $window = $(window);
         this.StringGenerator = this.getGeneratorInstance()
         this.TAGS = TAGS
-        this.configuration = this.getOriginConfigurations($window.width(), $window.height())
+        this.configuration = this.getOriginConfigurations(window.innerWidth, window.innerHeight)
     }
     getGeneratorInstance() {
         if (this.StringGenerator === undefined) {
@@ -194,57 +189,12 @@ class Calibrator {
                         unit: this.TAGS.UNIT.PX
                     }
                 }
-            },
-            top: {
-                style: {
-                    width: width,
-                    height: width
-                },
-                coordinates: {
-                    X: {
-                        action: this.TAGS.ACTION.ROTATE_X,
-                        range: 90,
-                        unit: this.TAGS.UNIT.DEG
-                    },
-                    Y: {
-                        action: this.TAGS.ACTION.ROTATE_Y,
-                        range: 0,
-                        unit: this.TAGS.UNIT.DEG
-                    },
-                    Z: {
-                        action: this.TAGS.ACTION.TRANSLATE_Z,
-                        range: width/2,
-                        unit: this.TAGS.UNIT.PX
-                    }
-                }
-            },
-            bottom: {
-                style: {
-                    width: width,
-                    height: width
-                },
-                coordinates: {
-                    X: {
-                        action: this.TAGS.ACTION.ROTATE_X,
-                        range: -90,
-                        unit: this.TAGS.UNIT.DEG
-                    },
-                    Y: {
-                        action: this.TAGS.ACTION.ROTATE_Y,
-                        range: 0,
-                        unit: this.TAGS.UNIT.DEG
-                    },
-                    Z: {
-                        action: this.TAGS.ACTION.TRANSLATE_Z,
-                        range: width/2,
-                        unit: this.TAGS.UNIT.PX
-                    }
-                }
             }
         }
     }
     calculateTransition(element) {
         // TODO: outsource function for recalculating coordinates
+        // console.log(element)
         element.style.transform = this.StringGenerator.chain(element.coordinates)
         return {
             left: {
@@ -266,28 +216,6 @@ class Calibrator {
                         range: (element.coordinates.Y.range - 90),
                         unit: element.coordinates.Y.unit
                     },
-                    Z: element.coordinates.Z
-                }
-            },
-            up: {
-                coordinates: {
-                    X: {
-                        action: element.coordinates.X.action,
-                        range: (element.coordinates.X.range + 90),
-                        unit: element.coordinates.X.unit
-                    },
-                    Y: element.coordinates.Y,
-                    Z: element.coordinates.Z
-                }
-            },
-            down: {
-                coordinates: {
-                    X: {
-                        action: element.coordinates.X.action,
-                        range: (element.coordinates.X.range - 90),
-                        unit: element.coordinates.X.unit
-                    },
-                    Y: element.coordinates.Y,
                     Z: element.coordinates.Z
                 }
             }
