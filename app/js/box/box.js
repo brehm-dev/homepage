@@ -22,7 +22,7 @@ class Box {
         this.Elements = {}
 
         const identify = (tag) => {
-            const el = document.querySelectorAll('[data-identity="' + tag + '"')[0]
+            const el = document.getElementById(tag)
             if (el === undefined) return false;
             return el;
         }
