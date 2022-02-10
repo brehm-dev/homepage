@@ -31,7 +31,7 @@
     "css-loader": "^3.4.2",
     "extract-loader": "^4.0.3",
     "file-loader": "^4.3.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "qunit": "^2.10.0",
     "sass-loader": "^8.0.2",
     "twig-loader": "^0.5.1",
